@@ -1,18 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lobster&display=swap');
+
 .topnav {
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
   height: 2.4em;
-  font-size: 2em;
-  border-bottom: 4px solid black;
-  font-weight: bold;
-  text-shadow: 2px 2px 3px white;
+  font-size: 1.2rem;
+  padding-bottom: 0.5em;
+  padding-left: 1.5em;
 
-  div {
-    padding: 0em 1em;
+  h1 {
+    font-family: 'Libre Baskerville', serif;
+  }
+  a {
+    padding: 0em 1rem;
+    color: black;
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
 
     &:hover {
-      color: aqua;
+      color: rgb(238, 57, 127);
     }
   }
 }
