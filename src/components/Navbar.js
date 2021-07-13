@@ -1,0 +1,19 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import '../assets/Nav.scss';
+
+
+function Navbar() {
+  return (
+    <div className="topnav">
+      <Link to="/">Home </Link>
+      <Link to="/catalog">Product Catalog </Link>
+          <Link to="/services">Beauty Services </Link>
+          <Link to="/sales">Sales </Link>
+          <Link to="/contact">Contact </Link>
+    </div>
+  );
+};
+
+export default Navbar;

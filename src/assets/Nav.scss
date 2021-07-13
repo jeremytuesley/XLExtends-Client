@@ -1,0 +1,18 @@
+.topnav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.4em;
+  font-size: 2em;
+  border-bottom: 4px solid black;
+  font-weight: bold;
+  text-shadow: 2px 2px 3px white;
+
+  div {
+    padding: 0em 1em;
+
+    &:hover {
+      color: aqua;
+    }
+  }
+}
