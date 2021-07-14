@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     padding: 3em;
+    line-height: 28px;
 
     .subtitle {
       font-family: 'Noto Sans JP', sans-serif;
@@ -26,7 +27,7 @@
     }
     .socials {
       max-width: 25%;
-      line-height: 28px;
+
       p {
         margin-top: 0;
       }

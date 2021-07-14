@@ -1,38 +1,38 @@
 [
   {
-    "image": "https://picsum.photos/150",
+    "image": "https://loremflickr.com/450/450",
     "productName": "Welcome Boards",
     "id": "1",
     "saleprice": null,
-    "price": "80",
+    "price": "80.99",
     "available": true
   },
   {
-    "image": "https://picsum.photos/150",
-    "productName": "Welcome Boards",
+    "image": "https://loremflickr.com/450/450",
+    "productName": "Welcome Boards alot more text hahaha Welcome Boards alot",
     "id": "2",
-    "saleprice": null,
-    "price": "5",
+    "saleprice": "69",
+    "price": "420",
     "available": true
   },
   {
-    "image": "https://picsum.photos/150",
-    "productName": "Welcome Boards alot more text",
+    "image": "https://loremflickr.com/450/450",
+    "productName": "Welcome Boards alot more text hahaha",
     "id": "3",
     "saleprice": null,
     "price": "80",
     "available": true
   },
   {
-    "image": "https://picsum.photos/150",
+    "image": "https://loremflickr.com/450/450",
     "productName": "Welcome Boards",
     "id": "4",
     "saleprice": "50",
-    "price": "80",
+    "price": "80.99",
     "available": false
   },
   {
-    "image": "https://picsum.photos/150",
+    "image": "https://loremflickr.com/450/450",
     "productName": "Welcome Boards",
     "id": "5",
     "saleprice": null,
@@ -40,7 +40,7 @@
     "available": false
   },
   {
-    "image": "https://picsum.photos/150",
+    "image": "https://loremflickr.com/450/450",
     "productName": "Welcome Boards",
     "id": "6",
     "saleprice": "50",

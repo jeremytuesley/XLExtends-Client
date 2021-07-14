@@ -1,17 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+JP:wght@700&display=swap');
+
 .catalog {
   h1 {
-    width: 1000px;
     text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-bottom: 1em;
+    border-bottom: 2px solid grey;
+    margin-bottom: 50px;
   }
   .catalogContainer {
     display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
+    margin: auto;
     flex-wrap: wrap;
 
     .catalogCards {
-      width: 200px;
-      height: 300px;
+      width: 25%;
+      margin-bottom: 50px;
+
+      .catalogCardsContainer {
+        margin: 0 auto;
+        width: 90%;
+
+        .imageContainer {
+          margin: 0;
+          height: 320px;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+
+          img {
+            margin-left: 50%;
+            transform: translateX(-50%);
+          }
+          .sale {
+            position: absolute;
+            z-index: 1;
+            padding: 0.8em;
+            color: white;
+            opacity: 90%;
+            background-color: red;
+            font-weight: bolder;
+          }
+        }
+
+        .nameTitle {
+          font-size: 1em;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+
+        .prices {
+          font-size: 1em;
+          color: #e24848;
+          margin-top: 10px;
+          font-weight: bold;
+          .price {
+            color: #5d5d5d;
+            display: inline;
+          }
+          .sale {
+            text-decoration: line-through 2px #e24848;
+          }
+        }
+      }
     }
   }
 }

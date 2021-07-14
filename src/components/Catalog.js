@@ -11,11 +11,19 @@ const Catalog = ({ title }) => {
         {Products.map((item, key) => {
           return (
             <div className="catalogCards">
-              <img src={item.image} alt="cardThumbnail" />
-              <div className="nameTitle">{item.productName}</div>
-              <div className="price">
-                {item.price}
-                {item.saleprice}
+              <div className="catalogCardsContainer">
+                <div className="imageContainer">
+                  {item.saleprice && <div className="sale">Sale</div>}
+                  <img src={item.image} alt="cardThumbnail" />
+                </div>
+                <div className="nameTitle">{item.productName}</div>
+                <div className="prices">
+                  {item.saleprice &&
+                    `$${parseFloat(item.saleprice).toFixed(2)} `}
+                  <div className={item.saleprice ? 'price sale' : 'price'}>
+                    ${parseFloat(item.price).toFixed(2)}
+                  </div>
+                </div>
               </div>
             </div>
           );
