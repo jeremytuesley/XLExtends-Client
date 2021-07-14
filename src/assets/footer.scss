@@ -1,0 +1,64 @@
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .lineAbove {
+    width: 525px;
+    margin: 2em auto 0 auto;
+    border-top: 1px solid rgb(218, 218, 218);
+  }
+
+  .footerLinks {
+    display: flex;
+    justify-content: space-between;
+    padding: 3em;
+
+    .subtitle {
+      font-family: 'Noto Sans JP', sans-serif;
+      padding-bottom: 15px;
+    }
+    a {
+      display: block;
+      padding: 8px 0;
+      &:hover {
+        color: rgb(238, 57, 127);
+      }
+    }
+    .socials {
+      max-width: 25%;
+      line-height: 28px;
+      p {
+        margin-top: 0;
+      }
+      a {
+        display: inline;
+        font-weight: bold;
+        color: rgb(238, 57, 127);
+        &:hover {
+          color: rgb(249, 0, 0);
+        }
+      }
+      svg {
+        position: relative;
+        top: 7px;
+        padding-right: 5px;
+        margin-top: 10px;
+      }
+      .second {
+        padding-left: 45px;
+      }
+      .email {
+        color: black;
+        font-weight: normal;
+        &:hover {
+          color: rgb(238, 57, 127);
+        }
+      }
+    }
+  }
+
+  .logo img {
+    margin-top: 50px;
+    width: 200px;
+  }
+}

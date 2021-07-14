@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined/';
 import { IconButton } from '@material-ui/core'
 
-import '../assets/Nav.scss';
+import '../assets/nav.scss';
 
-function Navbar() {
+const Navbar = () => {
   return (
     <div className="topnav">
       <h1>XLEXTENDS</h1>

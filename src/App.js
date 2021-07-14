@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -8,7 +8,7 @@ import Sales from './pages/Sales';
 import Contact from './pages/Contact';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
-// import Footer from "./components/Footer"
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/contact" component={Contact} />
         <Route component={Error} />
       </Switch>
-      <div style={{ height: '200px' }}>Hi im temp footer</div>
+      <Footer />
     </main>
   );
 }
