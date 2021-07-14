@@ -1,0 +1,35 @@
+.home {
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: 20px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+
+    h1 {
+      font-size: 5vw;
+      font-family: 'Noto Sans JP', sans-serif;
+      text-align: center;
+      margin: 0 auto;
+      padding-top: 10%;
+    }
+    p {
+      font-size: 2vw;
+      font-weight: bold;
+      font-family: 'Noto Sans JP', sans-serif;
+      text-align: center;
+      width: 50%;
+      margin: 1em auto 0;
+    }
+  }
+  canvas {
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 26%,
+      rgba(242, 12, 220, 0.32396708683473385) 100%
+    );
+    // overflow: hidden;
+  }
+}
