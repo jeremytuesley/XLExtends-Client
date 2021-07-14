@@ -7,7 +7,10 @@
   height: 2.4em;
   font-size: 1.2rem;
   padding: 0.6em 1em;
-
+  div {
+    display: flex;
+    align-items: center;
+  }
   h1 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.5em;
@@ -20,6 +23,18 @@
 
     &:hover {
       color: rgb(238, 57, 127);
+    }
+  }
+  svg {
+    &:hover {
+      color: rgb(238, 57, 127);
+    }
+  }
+  .MuiIconButton-root {
+    color: black;
+    margin: 0 0.2em 0 0.5em;
+    &:hover {
+      background-color: none;
     }
   }
 }
