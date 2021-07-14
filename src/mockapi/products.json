@@ -5,23 +5,26 @@
     "id": "1",
     "saleprice": null,
     "price": "80.99",
-    "available": true
+    "available": true,
+    "service": false
   },
   {
     "image": "https://loremflickr.com/450/450",
-    "productName": "Welcome Boards alot more text hahaha Welcome Boards alot",
+    "productName": "Welcome Boards alot more text Welcome Boards alot",
     "id": "2",
-    "saleprice": "69",
-    "price": "420",
-    "available": true
+    "saleprice": "49.99",
+    "price": "80",
+    "available": true,
+    "service": false
   },
   {
     "image": "https://loremflickr.com/450/450",
-    "productName": "Welcome Boards alot more text hahaha",
+    "productName": "Welcome Boards alot more text",
     "id": "3",
     "saleprice": null,
     "price": "80",
-    "available": true
+    "available": true,
+    "service": false
   },
   {
     "image": "https://loremflickr.com/450/450",
@@ -29,7 +32,8 @@
     "id": "4",
     "saleprice": "50",
     "price": "80.99",
-    "available": false
+    "available": false,
+    "service": true
   },
   {
     "image": "https://loremflickr.com/450/450",
@@ -37,7 +41,8 @@
     "id": "5",
     "saleprice": null,
     "price": "80",
-    "available": false
+    "available": false,
+    "service": true
   },
   {
     "image": "https://loremflickr.com/450/450",
@@ -45,6 +50,7 @@
     "id": "6",
     "saleprice": "50",
     "price": "80",
-    "available": true
+    "available": true,
+    "service": true
   }
 ]
