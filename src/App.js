@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Catalog from './pages/Catalog';
+import Products from './pages/Products';
 import Services from './pages/Services';
 import Sales from './pages/Sales';
 import Contact from './pages/Contact';
@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/catalog" component={Catalog} />
+        <Route path="/products" component={Products} />
         <Route path="/services" component={Services} />
         <Route path="/sales" component={Sales} />
         <Route path="/contact" component={Contact} />

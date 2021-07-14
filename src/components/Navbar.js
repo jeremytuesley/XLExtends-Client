@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined/';
-import { IconButton } from '@material-ui/core'
+import { IconButton } from '@material-ui/core';
 
 import '../assets/nav.scss';
 
@@ -11,7 +11,7 @@ const Navbar = () => {
       <h1>XLEXTENDS</h1>
       <div>
         <Link to="/">Home </Link>
-        <Link to="/catalog">Product Catalog </Link>
+        <Link to="/products">Product Catalog </Link>
         <Link to="/services">Beauty Services </Link>
         <Link to="/sales">Sales </Link>
         <Link to="/contact">Contact </Link>
@@ -21,6 +21,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
