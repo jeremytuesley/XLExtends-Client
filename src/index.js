@@ -1,22 +1,26 @@
-import { ApolloProvider } from '@apollo/client';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { ApolloProvider } from "@apollo/client";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider as ReduxProvider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-import './assets/index.css';
+import "./assets/index.css";
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { client } from './shared/utils/api';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { store } from "./shared/store";
+import { client } from "./shared/utils/api";
 
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ReduxProvider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReduxProvider>
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 reportWebVitals();
