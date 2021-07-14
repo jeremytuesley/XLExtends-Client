@@ -1,6 +1,6 @@
 [
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards",
     "id": "1",
     "saleprice": null,
@@ -8,7 +8,7 @@
     "available": true
   },
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards",
     "id": "2",
     "saleprice": null,
@@ -16,7 +16,7 @@
     "available": true
   },
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards alot more text",
     "id": "3",
     "saleprice": null,
@@ -24,7 +24,7 @@
     "available": true
   },
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards",
     "id": "4",
     "saleprice": "50",
@@ -32,7 +32,7 @@
     "available": false
   },
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards",
     "id": "5",
     "saleprice": null,
@@ -40,7 +40,7 @@
     "available": false
   },
   {
-    "image": "https://picsum.photos/200",
+    "image": "https://picsum.photos/150",
     "productName": "Welcome Boards",
     "id": "6",
     "saleprice": "50",

@@ -1,0 +1,17 @@
+.catalog {
+  h1 {
+    width: 1000px;
+    text-align: center;
+  }
+  .catalogContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;
+
+    .catalogCards {
+      width: 200px;
+      height: 300px;
+    }
+  }
+}

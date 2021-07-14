@@ -1,20 +1,22 @@
 import React from 'react';
-import { Key } from 'sshpk';
 import Products from '../mockapi/products.json';
+import '../assets/catalog.scss';
 
 const Catalog = ({ title }) => {
   return (
-    <div className="catalog">
+    <div className="catalog content">
       <h1>{title}</h1>
 
-      <div className="catalogCards">
+      <div className="catalogContainer">
         {Products.map((item, key) => {
           return (
-            <div>
+            <div className="catalogCards">
               <img src={item.image} alt="cardThumbnail" />
-              <div>{item.productName}</div>
-              <div>{item.price}</div>
-              <div>{item.saleprice}</div>
+              <div className="nameTitle">{item.productName}</div>
+              <div className="price">
+                {item.price}
+                {item.saleprice}
+              </div>
             </div>
           );
         })}
