@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import canvas from '../assets/Canvas';
-import '../assets/home.scss';
+import React, { useEffect } from "react";
+import canvas from "../components/Canvas";
+import "../assets/home.scss";
 
 const Home = () => {
   useEffect(() => {

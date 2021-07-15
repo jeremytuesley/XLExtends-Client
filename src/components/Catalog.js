@@ -1,31 +1,36 @@
-import React from 'react';
-import Products from '../mockapi/products.json';
-import '../assets/catalog.scss';
+import React from "react";
+import "../assets/catalog.scss";
+import Error from "./Error";
+import Loading from "./Loading";
 
-const Catalog = ({ title }) => {
+const Catalog = ({ title, dataResult, loading, error }) => {
+  if (loading) return <Loading />;
+  if (error) return <Error />;
+
   return (
     <div className="catalog content">
       <h1>{title}</h1>
-
       <div className="catalogContainer">
-        {Products.map((item, key) => {
-          return (
-            <div className="catalogCards">
+        {dataResult.map((item, key) => {
+          return item.available ? (
+            <div key={key} className="catalogCards">
               <div className="catalogCardsContainer">
                 <div className="imageContainer">
-                  {item.saleprice && <div className="sale">Sale</div>}
-                  <img src={item.image} alt="cardThumbnail" />
+                  {item.salePrice && <div className="sale">Sale</div>}
+                  <img src={item.images[0]} alt="cardThumbnail" />
                 </div>
-                <div className="nameTitle">{item.productName}</div>
+                <div className="nameTitle">{item.name}</div>
                 <div className="prices">
-                  {item.saleprice &&
-                    `$${parseFloat(item.saleprice).toFixed(2)} `}
-                  <div className={item.saleprice ? 'price sale' : 'price'}>
+                  {item.salePrice &&
+                    `$${parseFloat(item.salePrice).toFixed(2)} `}
+                  <div className={item.salePrice ? "price sale" : "price"}>
                     ${parseFloat(item.price).toFixed(2)}
                   </div>
                 </div>
               </div>
             </div>
+          ) : (
+            ""
           );
         })}
       </div>
