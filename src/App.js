@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Error from "./components/Error";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/services" component={Services} />
         <Route path="/sales" component={Sales} />
         <Route path="/contact" component={Contact} />
+        <Route path="/product/:id" component={Product} />
         <Route component={Error} />
       </Switch>
       <Footer />
