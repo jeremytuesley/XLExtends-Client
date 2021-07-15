@@ -1,16 +1,15 @@
 const Canvas = () => {
-  let canvas = document.querySelector('canvas');
+  let canvas = document.querySelector("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  let c = canvas.getContext('2d');
+  let c = canvas.getContext("2d");
   //   mouse interactive
   let mouse = {
     x: undefined,
-    y: undefined,
+    y: undefined
   };
-  let colors = ['#6a0dad', '#00CCFF', '#FFD700', '#FF69B4', '#FF0000'];
+  let colors = ["#6a0dad", "#00CCFF", "#FFD700", "#FF69B4", "#FF0000"];
   let maxR = 40;
-  let minR = 2;
   //   construct circles
   function Circles(x, y, dx, dy, radius) {
     this.x = x;
@@ -80,11 +79,11 @@ const Canvas = () => {
     }
   }
   animate();
-  window.addEventListener('mousemove', function (event) {
+  window.addEventListener("mousemove", function (event) {
     mouse.x = event.x;
     mouse.y = event.y;
   });
-  window.addEventListener('resize', function () {
+  window.addEventListener("resize", function () {
     canvas.width = window.window.innerWidth;
     canvas.height = window.innerHeight;
   });

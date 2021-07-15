@@ -1,7 +1,19 @@
-import React from "react"
+import React from "react";
+import Catalog from "../components/Catalog";
+import { GET_ALL_PRODUCTS } from "../shared/utils";
+import { useQuery } from "@apollo/client";
 
 const Services = () => {
-  return <h1>Services</h1>
-}
+  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS);
 
-export default Services
+  return (
+    <Catalog
+      title="Beauty Services"
+      dataResult={data?.getAllProducts}
+      loading={loading}
+      error={error}
+    />
+  );
+};
+
+export default Services;
