@@ -1,0 +1,52 @@
+{
+  "getAllServices": [
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting",
+      "id": "1",
+      "salePrice": null,
+      "price": "80.99",
+      "available": true
+    },
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting alot more text Nail painting alot",
+      "id": "2",
+      "salePrice": "49.99",
+      "price": "80",
+      "available": true
+    },
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting alot more text",
+      "id": "3",
+      "salePrice": null,
+      "price": "80",
+      "available": true
+    },
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting",
+      "id": "4",
+      "salePrice": "50",
+      "price": "80.99",
+      "available": false
+    },
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting",
+      "id": "5",
+      "salePrice": null,
+      "price": "80",
+      "available": false
+    },
+    {
+      "images": ["https://loremflickr.com/450/450"],
+      "name": "Nail painting",
+      "id": "6",
+      "salePrice": "50",
+      "price": "80",
+      "available": true
+    }
+  ]
+}
