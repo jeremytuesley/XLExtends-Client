@@ -1,16 +1,41 @@
 import React from "react";
 import Error from "./Error";
 import Loading from "./Loading";
+import { useState } from "react";
 import "../assets/productlayout.scss";
 
 const ProductLayout = ({ dataResult, loading, error }) => {
+  const [tab, setTab] = useState();
+  const handleOnClick = (clickedImage) => {
+    console.log(clickedImage);
+    setTab(clickedImage);
+  };
+
   if (loading) return <Loading />;
   if (error) return <Error />;
+
   return (
     <div className="content">
       <div className="singleProduct">
         <div className="imageContainer">
-          <img src={dataResult.images} alt="productPhoto" />
+          <div className="thumbnailContainer">
+            {dataResult.images.map((item, key) => {
+              return (
+                <img
+                  className={tab === item ? "activeImage" : ""}
+                  key={key}
+                  src={item}
+                  alt="productThumbnails"
+                  onClick={() => handleOnClick(item)}
+                />
+              );
+            })}
+          </div>
+          <div className="biggerImageContainer">
+            <div className="biggerImage">
+              <img src={tab || dataResult.images[0]} alt="enlargedthumbnail" />
+            </div>
+          </div>
         </div>
         <div className="productContainer">
           <div className="productHeader">
@@ -28,7 +53,7 @@ const ProductLayout = ({ dataResult, loading, error }) => {
             </div>
           </div>
           <div className="productContent">
-            <div>{dataResult.description}</div>
+            <div className="productDescription">{dataResult.description}</div>
             <div className="buyButton">Buy it now!</div>
           </div>
         </div>
