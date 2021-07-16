@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import WhiteLogo from '../assets/WhiteLogo.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import WhiteLogo from "../assets/WhiteLogo.png";
 
-import '../assets/footer.scss';
+import "../assets/footer.scss";
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footerLinks">
         <div>
           <div className="subtitle">Quick Links</div>
-          <a>Privacy Policy</a>
+          <Link to="/legalpolicies/privacypolicy">Privacy Policy</Link>
           <a>Refund Policy</a>
           <a>Shipping Policy</a>
           <a>Terms of Service</a>
