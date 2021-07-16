@@ -13,6 +13,7 @@ import Product from "./pages/Product";
 import PrivPolicy from "./pages/PrivPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import ShipPolicy from "./pages/ShipPolicy";
+import ServiceTerms from "./pages/ServiceTerms";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
         <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
         <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
+        <Route path="/legalpolicies/termsofservice" component={ServiceTerms} />
         <Route component={Error} />
       </Switch>
       <Footer />
