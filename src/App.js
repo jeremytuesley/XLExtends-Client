@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import PrivPolicy from "./pages/PrivPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/contact" component={Contact} />
         <Route path="/product/:id" component={Product} />
         <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
+        <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
         <Route component={Error} />
       </Switch>
       <Footer />
