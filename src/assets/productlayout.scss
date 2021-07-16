@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+JP:wght@700&display=swap");
+
+.singleProduct {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+  .productContainer {
+    width: 500px;
+    .productHeader {
+      display: flex;
+      .productTitle {
+        font-size: 28px;
+        font-family: "Noto Sans JP", sans-serif;
+        width: 80%;
+      }
+      .productPrice {
+        width: 20%;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .sale .normPrice {
+        text-decoration: line-through 2px #e24848;
+        color: #6d6b6b;
+      }
+    }
+    .productContent {
+      display: flex;
+    }
+  }
+  .imageContainer {
+    width: 500px;
+    margin: 0;
+    height: 320px;
+    overflow: hidden;
+    img {
+      margin-left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+    }
+  }
+}
