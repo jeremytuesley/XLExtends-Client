@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import PrivPolicy from "./pages/PrivPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import ShipPolicy from "./pages/ShipPolicy";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/product/:id" component={Product} />
         <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
         <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
+        <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
         <Route component={Error} />
       </Switch>
       <Footer />
