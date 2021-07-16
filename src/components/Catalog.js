@@ -1,8 +1,8 @@
 import React from "react";
-import "../assets/catalog.scss";
 import Error from "./Error";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import "../assets/catalog.scss";
 
 const Catalog = ({ title, dataResult, loading, error }) => {
   if (loading) return <Loading />;
