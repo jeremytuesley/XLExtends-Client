@@ -1,9 +1,19 @@
 import { gql } from "@apollo/client";
 
 const CONTACT = gql`
-  mutation Contact($comments: String!, $contact: String!, $name: String!) {
+  mutation Contact(
+    $comments: String!
+    $contact: String!
+    $files: [Upload!]!
+    $name: String!
+  ) {
     contact(
-      contactData: { comments: $comments, contact: $contact, name: $name }
+      contactData: {
+        comments: $comments
+        contact: $contact
+        files: $files
+        name: $name
+      }
     )
   }
 `;
