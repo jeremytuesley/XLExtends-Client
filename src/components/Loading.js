@@ -4,12 +4,6 @@ import "../assets/loadinganderror.scss";
 
 const Loading = ({ fullPage }) => {
   return (
-    // <div className="content">
-    //   <div className="loadError">
-    //     <LoopIcon className="loadSymbol" />
-    //     <p>Loading... this may take a moment</p>
-    //   </div>
-    // </div>
     <div className={`lds-roller ${fullPage && "fullpage"}`}>
       <div></div>
       <div></div>

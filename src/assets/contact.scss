@@ -64,15 +64,19 @@
         input {
           display: none;
         }
+        label {
+          display: block;
+          text-align: right;
+        }
         .attachButton {
           font-size: 16px;
           text-transform: none;
         }
         .imageAttached {
-          text-align: right;
+          // max-width: 152px;
+          // overflow: hidden;
           font-size: 12px;
           color: rgb(131, 131, 131);
-          padding-right: 10px;
         }
       }
     }

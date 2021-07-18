@@ -131,7 +131,6 @@ const Contact = () => {
                   <input
                     accept="image/*"
                     type="file"
-                    multiple
                     onChange={(event) =>
                       formik.setFieldValue("files", event.currentTarget.files)
                     }
@@ -150,8 +149,7 @@ const Contact = () => {
                   </label>
                   {formik.values.files && (
                     <div className="imageAttached">
-                      {formik.values.files?.length} picture
-                      {formik.values.files?.length > 1 && "s"} attached
+                      {formik.values.files[0]?.name}
                     </div>
                   )}
                 </div>
