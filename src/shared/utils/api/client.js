@@ -3,7 +3,9 @@ import { createUploadLink } from "apollo-upload-client";
 
 import { getStoredAuthToken } from "../authToken";
 
-const httpLink = createUploadLink({ uri: "http://localhost:5000/v1/graphql" });
+const httpLink = createUploadLink({
+  uri: "https://xlextends-api.herokuapp.com/v1/graphql"
+});
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   const token = getStoredAuthToken();
