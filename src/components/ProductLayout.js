@@ -1,4 +1,5 @@
 import React from "react";
+import Customizations from "./Customizations";
 import Error from "./Error";
 import Loading from "./Loading";
 import { useState } from "react";
@@ -55,7 +56,10 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
             </div>
           </div>
           <div className="productContent">
-            <div className="productDescription">{dataResult.description}</div>
+            <div className="productDetailContainer">
+              <Customizations options={dataResult.options} />
+              <div className="productDescription">{dataResult.description}</div>
+            </div>
             <div
               className={
                 type === "product"

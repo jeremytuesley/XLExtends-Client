@@ -14,6 +14,7 @@ const Product = () => {
     <ProductLayout
       dataResult={data?.getProduct}
       type="product"
+      options={data?.getProduct.options}
       loading={loading}
       error={error}
     />
