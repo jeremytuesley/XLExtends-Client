@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../assets/catalog.scss";
 
 const Catalog = ({ title, dataResult, loading, error }) => {
-  if (loading) return <Loading />;
+  if (loading) return <Loading fullPage />;
   if (error) return <Error />;
 
   return (

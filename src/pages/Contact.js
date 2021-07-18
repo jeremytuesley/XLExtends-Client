@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CONTACT } from "../shared/utils";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import "../assets/contact.scss";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 
 const Contact = () => {
+  const [errorBar, setErrorBar] = useState(false);
   const [submitForm, { loading, error, data }] = useMutation(CONTACT);
 
   const handleSubmit = async (values) => {
-    console.log(values);
-    values.files = [values.files];
     try {
       await submitForm({ variables: values });
     } catch (err) {
-      console.log(err);
+      setErrorBar(true);
     }
   };
 
@@ -55,11 +54,26 @@ const Contact = () => {
     validationSchema: validationSchema,
     onSubmit: handleSubmit
   });
-  if (loading) return <Loading />;
-  if (error) return <Error />;
+
+  useEffect(() => {
+    if (error || (data && !data.contact)) {
+      setErrorBar(true);
+    } else {
+      setErrorBar(false);
+    }
+  }, [error, data]);
 
   return (
     <div className="content">
+      <Snackbar
+        open={errorBar}
+        autoHideDuration={4000}
+        onClose={() => setErrorBar(false)}
+      >
+        <Alert severity="error" onClose={() => setErrorBar(false)}>
+          Something went wrong! Form did not send.
+        </Alert>
+      </Snackbar>
       <div className="contactPage">
         <div className="sideDecoration"></div>
         <div className="contactFormContainer">
@@ -67,69 +81,83 @@ const Contact = () => {
           <div className="contactSubtitle">
             Have an enquiry? Something you'd like me to make?
           </div>
-          <form onSubmit={formik.handleSubmit}>
-            <TextField
-              name="name"
-              label="Full Name*"
-              variant="outlined"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
-            />
-            <TextField
-              name="contact"
-              label="Email Address*"
-              variant="outlined"
-              value={formik.values.contact}
-              onChange={formik.handleChange}
-              error={formik.touched.contact && Boolean(formik.errors.contact)}
-              helperText={formik.touched.contact && formik.errors.contact}
-            />
-            <TextField
-              multiline
-              rows={6}
-              maxRows={6}
-              name="comments"
-              label="Message*"
-              variant="outlined"
-              value={formik.values.comments}
-              onChange={formik.handleChange}
-              error={formik.touched.comments && Boolean(formik.errors.comments)}
-              helperText={formik.touched.comments && formik.errors.comments}
-            />
-            <div className="buttonContainer">
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<SendIcon />}
-                type="submit"
-              >
-                Send
-              </Button>
-              <div className="attachImage">
-                <input
-                  accept="image/*"
-                  type="file"
-                  onChange={(event) =>
-                    formik.setFieldValue("files", event.currentTarget.files[0])
-                  }
-                  name="files"
-                  id="contained-button-file"
-                />
-                <label htmlFor="contained-button-file">
-                  <Button
-                    component="span"
-                    className="attachButton"
-                    startIcon={<AttachFileIcon />}
-                    color="primary"
-                  >
-                    Attach a picture?
-                  </Button>
-                </label>
+          {loading ? (
+            <Loading />
+          ) : (
+            <form onSubmit={formik.handleSubmit}>
+              <TextField
+                name="name"
+                label="Full Name*"
+                variant="outlined"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
+              />
+              <TextField
+                name="contact"
+                label="Email Address*"
+                variant="outlined"
+                value={formik.values.contact}
+                onChange={formik.handleChange}
+                error={formik.touched.contact && Boolean(formik.errors.contact)}
+                helperText={formik.touched.contact && formik.errors.contact}
+              />
+              <TextField
+                multiline
+                rows={6}
+                maxRows={6}
+                name="comments"
+                label="Message*"
+                variant="outlined"
+                value={formik.values.comments}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.comments && Boolean(formik.errors.comments)
+                }
+                helperText={formik.touched.comments && formik.errors.comments}
+              />
+              <div className="buttonContainer">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="sendButton"
+                  startIcon={<SendIcon />}
+                  type="submit"
+                >
+                  Send
+                </Button>
+                <div className="attachImage">
+                  <input
+                    accept="image/*"
+                    type="file"
+                    multiple
+                    onChange={(event) =>
+                      formik.setFieldValue("files", event.currentTarget.files)
+                    }
+                    name="files"
+                    id="contained-button-file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button
+                      component="span"
+                      className="attachButton"
+                      startIcon={<AttachFileIcon />}
+                      color="primary"
+                    >
+                      Attach a picture?
+                    </Button>
+                  </label>
+                  {formik.values.files && (
+                    <div className="imageAttached">
+                      {formik.values.files?.length} picture
+                      {formik.values.files?.length > 1 && "s"} attached
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          )}
         </div>
         <div className="socials">
           <div className="socialsTitle">Contact Infomation </div>
