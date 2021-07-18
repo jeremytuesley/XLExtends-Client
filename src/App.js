@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Product from "./pages/Product";
+import Service from "./pages/Service";
 import PrivPolicy from "./pages/PrivPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import ShipPolicy from "./pages/ShipPolicy";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/sales" component={Sales} />
         <Route path="/contact" component={Contact} />
         <Route path="/product/:id" component={Product} />
+        <Route path="/service/:id" component={Service} />
         <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
         <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
         <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />

@@ -16,7 +16,13 @@ const Catalog = ({ title, dataResult, loading, error }) => {
           return item.available ? (
             <div key={key} className="catalogCards">
               <div className="catalogCardsContainer">
-                <Link to={`/product/${item._id}`}>
+                <Link
+                  to={
+                    title === "Products"
+                      ? `/product/${item._id}`
+                      : `/service/${item._id}`
+                  }
+                >
                   <div className="imageContainer">
                     {item.salePrice && <div className="sale">Sale</div>}
                     <img src={item.images[0]} alt="cardThumbnail" />
