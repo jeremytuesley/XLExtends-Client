@@ -2,9 +2,11 @@ import React from "react";
 import Error from "./Error";
 import Loading from "./Loading";
 import { useState } from "react";
+
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
 
-const ProductLayout = ({ dataResult, loading, error }) => {
+const ProductLayout = ({ dataResult, type, loading, error }) => {
   const [tab, setTab] = useState();
   const handleOnClick = (clickedImage) => {
     console.log(clickedImage);
@@ -54,7 +56,23 @@ const ProductLayout = ({ dataResult, loading, error }) => {
           </div>
           <div className="productContent">
             <div className="productDescription">{dataResult.description}</div>
-            <div className="buyButton">Buy it now!</div>
+            <div
+              className={
+                type === "product"
+                  ? "paymentButtonsContainer"
+                  : "serviceButtonsContainer"
+              }
+            >
+              {type === "product" && (
+                <div className="cartButton">
+                  <div className="cartButtonContainer">
+                    <AddShoppingCartIcon />
+                    <div>Add to cart</div>
+                  </div>
+                </div>
+              )}
+              <div className="buyButton">Proceed to payment</div>
+            </div>
           </div>
         </div>
       </div>

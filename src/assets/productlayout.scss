@@ -65,22 +65,45 @@
     }
     .productContent {
       display: flex;
-      .buyButton {
-        text-align: center;
-        color: white;
-        border-radius: 15px;
-        background-color: black;
-        padding: 1em;
-        height: 25px;
+      .paymentButtonsContainer {
         min-width: 40%;
         margin-top: 210px;
       }
-      .productDescription {
-        hyphens: auto;
-        line-height: 28px;
-        margin: 15px 20px 0 0;
-        width: 60%;
+      .serviceButtonsContainer {
+        min-width: 40%;
+        margin-top: 270px;
       }
+      .buyButton {
+        background-color: #ee397f;
+        margin-top: 10px;
+        text-align: center;
+        color: white;
+        border-radius: 15px;
+        padding: 1em;
+        height: 25px;
+      }
+      .cartButton {
+        background-color: #000000cc;
+        text-align: center;
+        color: white;
+        border-radius: 15px;
+        padding: 1em;
+        height: 25px;
+
+        .cartButtonContainer {
+          display: flex;
+          justify-content: center;
+          div {
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+    .productDescription {
+      hyphens: auto;
+      line-height: 28px;
+      margin: 15px 20px 0 0;
+      width: 60%;
     }
   }
 }

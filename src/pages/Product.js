@@ -13,6 +13,7 @@ const Product = () => {
   return (
     <ProductLayout
       dataResult={data?.getProduct}
+      type="product"
       loading={loading}
       error={error}
     />
