@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const CREATE_NEW_PRODUCT = gql`
   mutation CreateNewProduct(
@@ -8,7 +8,7 @@ const CREATE_NEW_PRODUCT = gql`
     $name: String!
     $options: [String!]!
     $price: Float!
-    $salePrice: Float!
+    $salePrice: Float
   ) {
     createNewProduct(
       createNewProductData: {

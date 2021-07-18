@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const EDIT_PRODUCT = gql`
   mutation EditProduct(
@@ -9,7 +9,7 @@ const EDIT_PRODUCT = gql`
     $options: [String!]!
     $price: Float!
     $productId: ID!
-    $salePrice: Float!
+    $salePrice: Float
   ) {
     editProduct(
       editProductData: {
