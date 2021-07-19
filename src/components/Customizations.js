@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useImperativeHandle, forwardRef } from "react";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -17,20 +17,13 @@ import { COLOURS } from "../constants";
 
 import "../assets/customization.scss";
 
-const Customizations = ({ options }) => {
-  const handleSubmit = (values) => {
-    console.log("submitted", values);
-  };
-
-  // const
-
+const CustomizationsView = ({ options }, ref) => {
   const createValidationSchema = () => {
     let schema = {};
     for (let item of options) {
       switch (item) {
         case "color":
           schema.color = yup.array().min(1, "MUST CHOOSE 1");
-          // .required("*This field is required");
           break;
         case "theme":
           schema.theme = yup
@@ -58,9 +51,17 @@ const Customizations = ({ options }) => {
       theme: "",
       text: ""
     },
-    validationSchema: validationSchema,
-    onSubmit: handleSubmit
+    validationSchema: validationSchema
   });
+
+  useImperativeHandle(ref, () => ({
+    submit: async () => {
+      formik.submitForm();
+      const err = await formik.validateForm();
+      if (Object.keys(err).length === 0) return formik.values;
+      return false;
+    }
+  }));
 
   return (
     <div className="productOptions">
@@ -129,10 +130,10 @@ const Customizations = ({ options }) => {
             </div>
           );
         })}
-        <button>press me</button>
       </form>
     </div>
   );
 };
 
+const Customizations = forwardRef(CustomizationsView);
 export default Customizations;

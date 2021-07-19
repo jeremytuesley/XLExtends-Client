@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Customizations from "./Customizations";
 import Error from "./Error";
 import Loading from "./Loading";
@@ -8,10 +8,14 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
 
 const ProductLayout = ({ dataResult, type, loading, error }) => {
-  const [tab, setTab] = useState();
-  const handleOnClick = (clickedImage) => {
-    console.log(clickedImage);
-    setTab(clickedImage);
+  const [activeImage, setActiveImage] = useState();
+  const customRef = useRef();
+
+  const handleCartClick = async () => {
+    const options = await customRef.current.submit();
+    console.log(options); // if validation pass, options will contain customizations (type Object), otherwise it's false.
+    // TODO: save the product along with it's customization into localstorage
+    // (search up how to save things into localstorage in react)
   };
 
   if (loading) return <Loading />;
@@ -25,18 +29,21 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
             {dataResult.images.map((item, key) => {
               return (
                 <img
-                  className={tab === item ? "activeImage" : ""}
+                  className={activeImage === item ? "activeImage" : ""}
                   key={key}
                   src={item}
                   alt="productThumbnails"
-                  onClick={() => handleOnClick(item)}
+                  onClick={() => setActiveImage(item)}
                 />
               );
             })}
           </div>
           <div className="biggerImageContainer">
             <div className="biggerImage">
-              <img src={tab || dataResult.images[0]} alt="enlargedthumbnail" />
+              <img
+                src={activeImage || dataResult.images[0]}
+                alt="enlargedthumbnail"
+              />
             </div>
           </div>
         </div>
@@ -57,7 +64,7 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
           </div>
           <div className="productContent">
             <div className="productDetailContainer">
-              <Customizations options={dataResult.options} />
+              <Customizations options={dataResult.options} ref={customRef} />
               <div className="productDescription">{dataResult.description}</div>
             </div>
             <div
@@ -69,7 +76,10 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
             >
               {type === "product" && (
                 <div className="cartButton">
-                  <div className="cartButtonContainer">
+                  <div
+                    className="cartButtonContainer"
+                    onClick={handleCartClick}
+                  >
                     <AddShoppingCartIcon />
                     <div>Add to cart</div>
                   </div>
