@@ -1,13 +1,19 @@
 import React from "react";
 
-import { TextField } from "@material-ui/core";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
+import {
+  FormControl,
+  FormHelperText,
+  MenuItem,
+  Select,
+  InputLabel,
+  TextField,
+  Checkbox,
+  ListItemText
+} from "@material-ui/core";
+import { COLOURS } from "../constants";
 
 import "../assets/customization.scss";
 
@@ -16,14 +22,15 @@ const Customizations = ({ options }) => {
     console.log("submitted", values);
   };
 
+  // const
+
   const createValidationSchema = () => {
     let schema = {};
     for (let item of options) {
       switch (item) {
         case "color":
-          schema.color = yup
-            .string("*Please enter your name")
-            .required("*This field is required");
+          schema.color = yup.array().min(1, "MUST CHOOSE 1");
+          // .required("*This field is required");
           break;
         case "theme":
           schema.theme = yup
@@ -47,7 +54,7 @@ const Customizations = ({ options }) => {
 
   const formik = useFormik({
     initialValues: {
-      color: "",
+      color: [],
       theme: "",
       text: ""
     },
@@ -70,18 +77,24 @@ const Customizations = ({ options }) => {
                     Colour
                   </InputLabel>
                   <Select
-                    native
+                    // native
+                    multiple
                     label="colour"
                     inputProps={{
                       name: "color"
                     }}
                     value={formik.values.color}
+                    renderValue={(selected) => selected.join(", ")}
                     onChange={formik.handleChange}
                   >
-                    <option aria-label="None" value="" />
-                    <option value="Blue">Blue</option>
-                    <option value="White">White</option>
-                    <option value="Black">Black</option>
+                    {COLOURS.map((color) => (
+                      <MenuItem key={color} value={color}>
+                        <Checkbox
+                          checked={formik.values.color.indexOf(color) > -1}
+                        />
+                        <ListItemText primary={color} />
+                      </MenuItem>
+                    ))}
                   </Select>
                   <FormHelperText>
                     {formik.touched.color && formik.errors.color}
@@ -116,6 +129,7 @@ const Customizations = ({ options }) => {
             </div>
           );
         })}
+        <button>press me</button>
       </form>
     </div>
   );
