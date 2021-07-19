@@ -49,7 +49,7 @@ const Contact = () => {
       name: "",
       contact: "",
       comments: "",
-      files: null
+      files: []
     },
     validationSchema: validationSchema,
     onSubmit: handleSubmit

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCartOutlined/";
 import { IconButton } from "@material-ui/core";
 
-import "../assets/nav.scss";
+import "../assets/Nav.scss";
 
 const Navbar = () => {
   return (

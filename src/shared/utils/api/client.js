@@ -3,7 +3,7 @@ import { createUploadLink } from "apollo-upload-client";
 
 import { getStoredAuthToken } from "../authToken";
 
-const httpLink = createUploadLink({ uri: "http://localhost:5000/v1/graphql" });
+const httpLink = createUploadLink({ uri: process.env.REACT_APP_API_URI });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   const token = getStoredAuthToken();
