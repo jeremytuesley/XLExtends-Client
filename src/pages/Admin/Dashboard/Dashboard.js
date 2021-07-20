@@ -14,7 +14,9 @@ const Dashboard = () => {
         <button onClick={() => history.push("/admin/products")}>
           Products
         </button>
-        <button>Services</button>
+        <button onClick={() => history.push("/admin/services")}>
+          Services
+        </button>
         <button
           onClick={() => {
             removeStoredAuthToken();
