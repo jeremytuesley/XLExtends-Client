@@ -7,9 +7,11 @@ import { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
 
-const ProductLayout = ({ dataResult, type, loading, error }) => {
+const ProductLayout = ({ dataResult, loading, error }) => {
   const [activeImage, setActiveImage] = useState();
   const customRef = useRef();
+
+  const isProduct = dataResult?.__typename === "Product";
 
   const handleCartClick = async () => {
     const submittedCustomization = await customRef.current.submit();
@@ -27,10 +29,6 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
     !productAlreadyInCart && cartData.push(dataResult);
     localStorage.setItem("Cart", JSON.stringify(cartData));
   };
-
-  // if validation pass, options will contain customizations (type Object), otherwise it's false.
-  // TODO: save the product along with it's customization into localstorage
-  // (search up how to save things into localstorage in react)
 
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -83,12 +81,12 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
             </div>
             <div
               className={
-                type === "product"
+                isProduct
                   ? "paymentButtonsContainer"
                   : "serviceButtonsContainer"
               }
             >
-              {type === "product" && (
+              {isProduct && (
                 <div className="cartButton" onClick={handleCartClick}>
                   <div className="cartButtonContainer">
                     <AddShoppingCartIcon />

@@ -12,8 +12,7 @@ const Service = () => {
 
   return (
     <ProductLayout
-          dataResult={data?.getService}
-          type="service"
+      dataResult={data?.getService}
       loading={loading}
       error={error}
     />

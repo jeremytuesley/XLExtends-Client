@@ -23,7 +23,10 @@ const CustomizationsView = ({ options }, ref) => {
     for (let item of options) {
       switch (item) {
         case "color":
-          schema.color = yup.array().min(1, "MUST CHOOSE 1");
+          schema.color = yup
+            .array()
+            .min(1, "Please choose atleast one colour")
+            .max(3, "You may only choose up to three colours");
           break;
         case "theme":
           schema.theme = yup
@@ -79,7 +82,6 @@ const CustomizationsView = ({ options }, ref) => {
                     Colour
                   </InputLabel>
                   <Select
-                    // native
                     multiple
                     label="colour"
                     inputProps={{
