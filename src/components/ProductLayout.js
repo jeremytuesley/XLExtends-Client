@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Customizations from "./Customizations";
 import Error from "./Error";
 import Loading from "./Loading";
+// import DisplayCart from "./Cart"; TODO: when user adds to cart, temporarily display cart ?? maybe
 import { useState } from "react";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
