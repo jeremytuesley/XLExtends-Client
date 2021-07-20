@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
+import { Admin } from "./pages/Admin";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Services from "./pages/Services";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/services" component={Services} />
         <Route path="/sales" component={Sales} />
         <Route path="/contact" component={Contact} />
+        <Route component={Admin} path="/admin" />
         <Route path="/product/:id" component={Product} />
         <Route path="/service/:id" component={Service} />
         <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
