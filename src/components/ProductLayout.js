@@ -12,11 +12,25 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
   const customRef = useRef();
 
   const handleCartClick = async () => {
-    const options = await customRef.current.submit();
-    console.log(options); // if validation pass, options will contain customizations (type Object), otherwise it's false.
-    // TODO: save the product along with it's customization into localstorage
-    // (search up how to save things into localstorage in react)
+    const submittedCustomization = await customRef.current.submit();
+    if (!submittedCustomization) return;
+    const cartData = JSON.parse(localStorage.getItem("Cart")) || [];
+    dataResult.options = submittedCustomization;
+    let productAlreadyInCart = false;
+    for (let index in cartData) {
+      if (cartData[index]._id === dataResult._id) {
+        cartData[index] = dataResult;
+        productAlreadyInCart = true;
+        break;
+      }
+    }
+    !productAlreadyInCart && cartData.push(dataResult);
+    localStorage.setItem("Cart", JSON.stringify(cartData));
   };
+
+  // if validation pass, options will contain customizations (type Object), otherwise it's false.
+  // TODO: save the product along with it's customization into localstorage
+  // (search up how to save things into localstorage in react)
 
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -75,11 +89,8 @@ const ProductLayout = ({ dataResult, type, loading, error }) => {
               }
             >
               {type === "product" && (
-                <div className="cartButton">
-                  <div
-                    className="cartButtonContainer"
-                    onClick={handleCartClick}
-                  >
+                <div className="cartButton" onClick={handleCartClick}>
+                  <div className="cartButtonContainer">
                     <AddShoppingCartIcon />
                     <div>Add to cart</div>
                   </div>

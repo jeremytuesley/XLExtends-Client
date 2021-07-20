@@ -51,7 +51,8 @@ const CustomizationsView = ({ options }, ref) => {
       theme: "",
       text: ""
     },
-    validationSchema: validationSchema
+    validationSchema: validationSchema,
+    onSubmit: () => {}
   });
 
   useImperativeHandle(ref, () => ({
