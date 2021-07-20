@@ -7,6 +7,7 @@ import ProductLayout from "../components/ProductLayout";
 const Product = () => {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PRODUCT, {
+    fetchPolicy: "no-cache",
     variables: { productId: id }
   });
 
