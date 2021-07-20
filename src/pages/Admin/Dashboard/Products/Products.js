@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 import { CREATE_NEW_PRODUCT, SIGN_REQUEST } from "../../../../shared/utils/api";
+import { ButtonContainer, StyledForm, StyledTextField } from "./Styles";
 
 const Products = () => {
   const [files, setFiles] = useState([]);
@@ -83,44 +84,45 @@ const Products = () => {
       <h1>Products</h1>
       <div>
         <h2>Create New Product</h2>
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
+        <StyledForm onSubmit={formik.handleSubmit}>
+          <StyledTextField
             label="name"
             variant="outlined"
             {...formik.getFieldProps("name")}
           />
-          <TextField
+          <StyledTextField
             label="description"
             variant="outlined"
             {...formik.getFieldProps("description")}
           />
-          <TextField
+          <StyledTextField
             label="price"
             type="number"
             variant="outlined"
             {...formik.getFieldProps("price")}
           />
-          <TextField
+          <StyledTextField
             label="sale price"
             type="number"
             variant="outlined"
             {...formik.getFieldProps("salePrice")}
           />
-          <Button
-            color="secondary"
-            component="label"
-            onChange={({ target: { files } }) => setFiles(() => files)}
-            variant="contained"
-          >
-            Upload Images
-            <input hidden multiple type="file" />
-          </Button>
-          <Button color="secondary" type="submit" variant="contained">
-            Save
-          </Button>
-        </form>
+          <ButtonContainer>
+            <Button
+              color="secondary"
+              component="label"
+              onChange={({ target: { files } }) => setFiles(() => files)}
+              variant="contained"
+            >
+              Upload Images
+              <input hidden multiple type="file" />
+            </Button>
+            <Button color="secondary" type="submit" variant="contained">
+              Save
+            </Button>
+          </ButtonContainer>
+        </StyledForm>
       </div>
-      <pre>{JSON.stringify({ signRequestData }, null, 2)}</pre>
     </div>
   );
 };
