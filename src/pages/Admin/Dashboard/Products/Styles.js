@@ -12,9 +12,11 @@ export const StyledForm = styled.form`
 
   flex-direction: column;
 
+  padding: 0px 10px;
+
   width: 50%;
 `;
 
 export const StyledTextField = styled(TextField)`
-  margin: 20px 10px;
+  margin: 20px 0px;
 `;

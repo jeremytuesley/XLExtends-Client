@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, TextField } from "@material-ui/core";
+import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
 import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
@@ -11,18 +11,27 @@ import { ButtonContainer, StyledForm, StyledTextField } from "./Styles";
 
 const Products = () => {
   const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [productAvailable, setProductAvailable] = useState(true);
 
   const history = useHistory();
-  const [createNewProduct, { data: createNewProductData }] =
-    useMutation(CREATE_NEW_PRODUCT);
-  const { data: signRequestData } = useQuery(SIGN_REQUEST, {
-    fetchPolicy: "no-cache"
-  });
+  const [
+    createNewProduct,
+    { data: createNewProductData, loading: createNewProductLoading }
+  ] = useMutation(CREATE_NEW_PRODUCT);
+  const { data: signRequestData, loading: singRequestLoading } = useQuery(
+    SIGN_REQUEST,
+    {
+      fetchPolicy: "no-cache"
+    }
+  );
 
   const formik = useFormik({
     initialValues: { name: "", description: "", price: 0, salePrice: 0 },
     onSubmit: async ({ name, description, price, salePrice }) => {
       const createForm = (file) => {
+        setLoading(() => true);
         const formData = new FormData();
         formData.append("file", file);
         formData.append("signature", signRequestData.signRequest.signature);
@@ -48,18 +57,19 @@ const Products = () => {
         createNewProduct({
           variables: {
             createNewProductData: {
-              available: true,
+              available: productAvailable,
               description,
               images,
               name,
-              options: ["what are those"],
+              options,
               price,
               ...(Boolean(salePrice) && { salePrice })
             }
           }
         });
+        setLoading(() => false);
       } catch {
-        console.log("this is errors");
+        setLoading(() => false);
       }
     },
     validationSchema: Yup.object({
@@ -81,10 +91,22 @@ const Products = () => {
 
   return (
     <div>
-      <h1>Products</h1>
       <div>
         <h2>Create New Product</h2>
         <StyledForm onSubmit={formik.handleSubmit}>
+          <div>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={productAvailable}
+                  onChange={({ target: { checked } }) =>
+                    setProductAvailable(() => checked)
+                  }
+                />
+              }
+              label="Available"
+            />
+          </div>
           <StyledTextField
             label="name"
             variant="outlined"
@@ -92,9 +114,31 @@ const Products = () => {
           />
           <StyledTextField
             label="description"
+            multiline
+            rows={6}
+            maxRows={6}
             variant="outlined"
             {...formik.getFieldProps("description")}
           />
+          <h2>Options</h2>
+          <div>
+            {["color", "theme", "text"].map((option) => (
+              <FormControlLabel
+                control={<Checkbox />}
+                key={option}
+                label={option}
+                onChange={({ target: { checked } }) =>
+                  setOptions((options) =>
+                    checked
+                      ? [...options, option]
+                      : options.filter(
+                          (currentOption) => currentOption !== option
+                        )
+                  )
+                }
+              />
+            ))}
+          </div>
           <StyledTextField
             label="price"
             type="number"
@@ -117,7 +161,14 @@ const Products = () => {
               Upload Images
               <input hidden multiple type="file" />
             </Button>
-            <Button color="secondary" type="submit" variant="contained">
+            <Button
+              color="secondary"
+              disabled={
+                createNewProductLoading || singRequestLoading || loading
+              }
+              type="submit"
+              variant="contained"
+            >
               Save
             </Button>
           </ButtonContainer>
