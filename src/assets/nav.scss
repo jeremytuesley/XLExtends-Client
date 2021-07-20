@@ -36,22 +36,3 @@
     }
   }
 }
-.cartContainer {
-  padding: 2em 3em 3em;
-  box-shadow: 4px 4px 10px rgb(184, 180, 180), 2px 2px 5px #ee397f;
-  border-radius: 10px;
-  height: 250px;
-  width: 300px;
-  background-color: white;
-  .cartTop {
-    display: flex;
-    border-bottom: 2px solid #dadada;
-    margin-bottom: 20px;
-
-    .cartTitle {
-      font-size: 36px;
-      font-family: "Indie Flower", sans-serif;
-      font-weight: bolder;
-    }
-  }
-}

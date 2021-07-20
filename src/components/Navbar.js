@@ -34,9 +34,7 @@ const Navbar = () => {
       <Popper open={open} anchorEl={anchorEl} placement="bottom-end" transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
-            <div className="cartContainer">
-              <Cart />
-            </div>
+            <Cart />
           </Fade>
         )}
       </Popper>

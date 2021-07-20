@@ -1,0 +1,90 @@
+.cartContainer {
+  background-color: white;
+  height: 300px;
+  box-shadow: 4px 4px 10px rgb(184, 180, 180), 2px 2px 5px #ee397f;
+  border-radius: 10px;
+  width: 350px;
+  .cartContents {
+    padding: 1em 1em 0;
+
+    .cartTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid #dadada;
+      margin-bottom: 20px;
+      .cartTitle {
+        font-size: 30px;
+        font-family: "Indie Flower", sans-serif;
+        font-weight: bolder;
+        min-width: 40%;
+      }
+      .cartQty {
+        font-family: "Noto Sans JP", sans-serif;
+      }
+    }
+
+    .productCardContainer {
+      overflow: scroll;
+      height: 130px;
+      .productCard {
+        display: flex;
+        height: 100px;
+        border: 1px solid black;
+        margin-bottom: 15px;
+        .productImage {
+          margin: 5px 0;
+          width: 30%;
+          border: 1px solid red;
+        }
+        .productDetailContainer {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 4px;
+          width: 70%;
+          .productTextContainer {
+            max-width: calc(70%-8px);
+            padding-right: 4px;
+            overflow: auto;
+            .productName {
+              font-weight: bold;
+              font-size: 16px;
+            }
+            .productDesc {
+              overflow-wrap: break-word;
+              font-size: 12px;
+              color: #838383;
+            }
+          }
+          .productNumbersContainer {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+  .cartPrice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+    background-color: #f0efef;
+    box-shadow: 0 0 2px rgb(129, 129, 129);
+    div {
+      margin: 10px;
+    }
+  }
+  .checkoutButton {
+    font-family: "Noto Sans JP", sans-serif;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    height: 10%;
+    text-align: center;
+    padding: 7px;
+    background-color: #038a03;
+  }
+}
