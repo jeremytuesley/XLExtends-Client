@@ -20,15 +20,15 @@ const Products = () => {
           }
           value={selectedTabIndex}
         >
-          <Tab label="Crate New Product" />
           <Tab label="Edit Products" />
+          <Tab label="Crate New Product" />
         </Tabs>
       </AppBar>
       <TabPanel index={0} value={selectedTabIndex}>
-        <CreateNewProductForm />
+        <EditProductsTable />
       </TabPanel>
       <TabPanel index={1} value={selectedTabIndex}>
-        <EditProductsTable />
+        <CreateNewProductForm />
       </TabPanel>
     </div>
   );

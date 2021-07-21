@@ -20,15 +20,15 @@ const Services = () => {
           }
           value={selectedTabIndex}
         >
-          <Tab label="Crate New Service" />
           <Tab label="Edit Services" />
+          <Tab label="Crate New Service" />
         </Tabs>
       </AppBar>
       <TabPanel index={0} value={selectedTabIndex}>
-        <CreateNewServiceForm />
+        <EditServicesTable />
       </TabPanel>
       <TabPanel index={1} value={selectedTabIndex}>
-        <EditServicesTable />
+        <CreateNewServiceForm />
       </TabPanel>
     </div>
   );
