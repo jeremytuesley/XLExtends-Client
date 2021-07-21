@@ -15,19 +15,13 @@ const ProductLayout = ({ dataResult, loading, error }) => {
   const isProduct = dataResult?.__typename === "Product";
 
   const handleCartClick = async () => {
-    const submittedCustomization = await customRef.current.submit();
-    if (!submittedCustomization) return;
     const cartData = JSON.parse(localStorage.getItem("Cart")) || [];
-    dataResult.options = submittedCustomization;
-    let productAlreadyInCart = false;
-    for (let index in cartData) {
-      if (cartData[index]._id === dataResult._id) {
-        cartData[index] = dataResult;
-        productAlreadyInCart = true;
-        break;
-      }
+    if (dataResult.options.length > 0) {
+      const customChoices = await customRef.current.submit();
+      if (!customChoices) return;
+      dataResult.customChoices = customChoices;
     }
-    !productAlreadyInCart && cartData.push(dataResult);
+    cartData.push(dataResult);
     localStorage.setItem("Cart", JSON.stringify(cartData));
   };
 

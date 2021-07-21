@@ -46,14 +46,29 @@ const CustomizationsView = ({ options }, ref) => {
     return schema;
   };
 
+  const createInitialValues = () => {
+    let initialValues = {};
+    for (let item of options) {
+      switch (item) {
+        case "color":
+          initialValues.color = [];
+          break;
+        case "theme":
+          initialValues.theme = "";
+          break;
+        case "text":
+          initialValues.text = "";
+          break;
+        default:
+      }
+    }
+    return initialValues;
+  };
+
   const validationSchema = yup.object(createValidationSchema());
 
   const formik = useFormik({
-    initialValues: {
-      color: [],
-      theme: "",
-      text: ""
-    },
+    initialValues: createInitialValues(),
     validationSchema: validationSchema,
     onSubmit: () => {}
   });
@@ -72,7 +87,7 @@ const CustomizationsView = ({ options }, ref) => {
       <form onSubmit={formik.handleSubmit}>
         {options.map((item, key) => {
           return (
-            <div>
+            <div key={key}>
               {item === "color" && (
                 <FormControl
                   variant="outlined"
