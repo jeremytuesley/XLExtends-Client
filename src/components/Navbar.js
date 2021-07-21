@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCartOutlined/";
-import { IconButton, Fade, Popper } from "@material-ui/core";
+import { IconButton, Popover } from "@material-ui/core";
 
 import useCartModel from "../hooks/useCart";
 import Cart from "./Cart";
@@ -10,11 +10,7 @@ import "../assets/nav.scss";
 
 const Navbar = () => {
   const { cartDisplay, setCartDisplay } = useCartModel();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleOnClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-    setCartDisplay(!cartDisplay ? true : false);
-  };
+  const cartButton = useRef(null);
 
   return (
     <>
@@ -28,25 +24,30 @@ const Navbar = () => {
           <Link to="/services">Beauty Services </Link>
           <Link to="/sales">Sales </Link>
           <Link to="/contact">Contact </Link>
-          <IconButton aria-label="shopping cart" onClick={handleOnClick}>
+          <IconButton
+            ref={cartButton}
+            aria-label="shopping cart"
+            onClick={() => setCartDisplay(!cartDisplay ? true : false)}
+          >
             <ShoppingCartIcon style={{ fontSize: 30 }} />
           </IconButton>
         </div>
       </div>
-      <Popper
+      <Popover
         open={cartDisplay}
-        anchorEl={anchorEl}
-        placement="bottom-end"
-        transition
+        onClose={() => setCartDisplay(false)}
+        anchorEl={cartButton.current}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
       >
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <div>
-              <Cart />
-            </div>
-          </Fade>
-        )}
-      </Popper>
+        <Cart />
+      </Popover>
     </>
   );
 };
