@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const DELETE_PRODUCT = gql`
-  mutation DeleteProduct($productId: ID!) {
-    deleteProduct(deleteProductData: { productId: $productId })
+  mutation deleteProduct($deleteProductData: DELETE_PRODUCT_DATA) {
+    deleteProduct(deleteProductData: $deleteProductData)
   }
 `;
 

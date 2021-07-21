@@ -1,28 +1,9 @@
 import { gql } from "@apollo/client";
 
 const EDIT_PRODUCT = gql`
-  mutation EditProduct(
-    $available: Boolean!
-    $description: String!
-    $images: [String!]!
-    $name: String!
-    $options: [String!]!
-    $price: Float!
-    $productId: ID!
-    $salePrice: Float
-  ) {
-    editProduct(
-      editProductData: {
-        available: $available
-        description: $description
-        images: $images
-        name: $name
-        options: $options
-        price: $price
-        productId: $productId
-        salePrice: $salePrice
-      }
-    ) {
+  mutation EditProduct($editProductData: EDIT_PRODUCT_DATA) {
+    editProduct(editProductData: $editProductData) {
+      _id
       available
       creatorId {
         email

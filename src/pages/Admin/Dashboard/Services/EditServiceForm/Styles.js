@@ -5,6 +5,8 @@ export const ButtonContainer = styled.div`
   display: flex;
 
   justify-content: space-around;
+
+  margin: 0 0 10px 0;
 `;
 
 export const StyledForm = styled.form`
@@ -14,9 +16,9 @@ export const StyledForm = styled.form`
 
   padding: 0px 10px;
 
-  width: 50%;
+  width: 600px;
 `;
 
 export const StyledTextField = styled(TextField)`
-  margin: 20px 0px;
+  margin: 0 0 10px 0;
 `;
