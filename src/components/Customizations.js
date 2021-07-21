@@ -23,7 +23,10 @@ const CustomizationsView = ({ options }, ref) => {
     for (let item of options) {
       switch (item) {
         case "color":
-          schema.color = yup.array().min(1, "MUST CHOOSE 1");
+          schema.color = yup
+            .array()
+            .min(1, "Please choose atleast one colour")
+            .max(3, "You may only choose up to three colours");
           break;
         case "theme":
           schema.theme = yup
@@ -43,15 +46,31 @@ const CustomizationsView = ({ options }, ref) => {
     return schema;
   };
 
+  const createInitialValues = () => {
+    let initialValues = {};
+    for (let item of options) {
+      switch (item) {
+        case "color":
+          initialValues.color = [];
+          break;
+        case "theme":
+          initialValues.theme = "";
+          break;
+        case "text":
+          initialValues.text = "";
+          break;
+        default:
+      }
+    }
+    return initialValues;
+  };
+
   const validationSchema = yup.object(createValidationSchema());
 
   const formik = useFormik({
-    initialValues: {
-      color: [],
-      theme: "",
-      text: ""
-    },
-    validationSchema: validationSchema
+    initialValues: createInitialValues(),
+    validationSchema: validationSchema,
+    onSubmit: () => {}
   });
 
   useImperativeHandle(ref, () => ({
@@ -68,7 +87,7 @@ const CustomizationsView = ({ options }, ref) => {
       <form onSubmit={formik.handleSubmit}>
         {options.map((item, key) => {
           return (
-            <div>
+            <div key={key}>
               {item === "color" && (
                 <FormControl
                   variant="outlined"
@@ -78,7 +97,6 @@ const CustomizationsView = ({ options }, ref) => {
                     Colour
                   </InputLabel>
                   <Select
-                    // native
                     multiple
                     label="colour"
                     inputProps={{

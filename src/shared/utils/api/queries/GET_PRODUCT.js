@@ -7,6 +7,7 @@ const GET_PRODUCT = gql`
       description
       images
       name
+      _id
       options
       price
       salePrice

@@ -18,7 +18,7 @@ const Catalog = ({ title, dataResult, loading, error }) => {
               <div className="catalogCardsContainer">
                 <Link
                   to={
-                    title === "Products"
+                    item.__typename === "Product"
                       ? `/product/${item._id}`
                       : `/service/${item._id}`
                   }
