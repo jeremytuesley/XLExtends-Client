@@ -108,8 +108,8 @@ const EditProductForm = ({ product }) => {
         />
         <h2>Images</h2>
         <div style={{ display: "flex" }}>
-          {product.images.map((image) => (
-            <div>
+          {product.images.map((image, index) => (
+            <div key={index}>
               <img alt="product" src={image} width="200" />
             </div>
           ))}
