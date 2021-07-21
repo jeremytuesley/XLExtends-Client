@@ -2,6 +2,7 @@ import { AppBar, Tab, Tabs } from "@material-ui/core";
 import { useState } from "react";
 
 import { CreateNewProductForm } from "./CreateNewProductForm";
+import { EditProductsTable } from "./EditProductsTable";
 
 const TabPanel = ({ children, index, value, ...tabPanelProps }) => (
   <div {...tabPanelProps}>{value === index && children}</div>
@@ -25,6 +26,9 @@ const Products = () => {
       </AppBar>
       <TabPanel index={0} value={selectedTabIndex}>
         <CreateNewProductForm />
+      </TabPanel>
+      <TabPanel index={1} value={selectedTabIndex}>
+        <EditProductsTable />
       </TabPanel>
     </div>
   );
