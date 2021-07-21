@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createModel } from "hox";
 
-function useCart() {
+const useCart = () => {
   const [cartData, setCart] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
   );
@@ -18,6 +18,6 @@ function useCart() {
     cartDisplay,
     setCartDisplay
   };
-}
+};
 
 export default createModel(useCart);

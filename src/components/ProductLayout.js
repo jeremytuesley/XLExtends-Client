@@ -81,6 +81,14 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                   : "serviceButtonsContainer"
               }
             >
+              {" "}
+              {!isProduct && (
+                <div className="bookingFee">
+                  Please note:
+                  <br /> There is a $15 booking fee.
+                  <br /> Refundable upon payment of service
+                </div>
+              )}
               {isProduct && (
                 <div className="cartButton" onClick={handleCartClick}>
                   <div className="cartButtonContainer">
@@ -89,7 +97,9 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                   </div>
                 </div>
               )}
-              <div className="buyButton">Proceed to payment</div>
+              <div className="buyButton">
+                {isProduct ? "Proceed to payment" : "Proceed to booking"}
+              </div>
             </div>
           </div>
         </div>
