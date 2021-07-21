@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-const GET_ALL_SERVICES = gql`
-  query GetAllServices {
-    getAllServices {
+const EDIT_SERVICE = gql`
+  mutation EditService($editServiceData: EDIT_SERVICE_DATA) {
+    editService(editServiceData: $editServiceData) {
       _id
       available
       creatorId {
@@ -22,4 +22,4 @@ const GET_ALL_SERVICES = gql`
   }
 `;
 
-export default GET_ALL_SERVICES;
+export default EDIT_SERVICE;

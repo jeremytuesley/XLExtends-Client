@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 import Routes from "./Routes";
@@ -11,20 +12,20 @@ const Dashboard = () => {
     <div>
       <HeaderWrapper>
         <h1>Dashboard</h1>
-        <button onClick={() => history.push("/admin/products")}>
+        <Button onClick={() => history.push("/admin/products")}>
           Products
-        </button>
-        <button onClick={() => history.push("/admin/services")}>
+        </Button>
+        <Button onClick={() => history.push("/admin/services")}>
           Services
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => {
             removeStoredAuthToken();
             history.push("/admin/login");
           }}
         >
           Log Out
-        </button>
+        </Button>
       </HeaderWrapper>
       <Routes />
     </div>

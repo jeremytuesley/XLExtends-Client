@@ -114,7 +114,7 @@ const CreateNewProductForm = () => {
       <StyledTextField
         label="description"
         multiline
-        rows={6}
+        minRows={6}
         maxRows={6}
         variant="outlined"
         {...formik.getFieldProps("description")}

@@ -2,6 +2,7 @@ import { AppBar, Tab, Tabs } from "@material-ui/core";
 import { useState } from "react";
 
 import { CreateNewServiceForm } from "./CreateNewServiceForm";
+import { EditServicesTable } from "./EditServicesTable";
 
 const TabPanel = ({ children, index, value, ...tabPanelProps }) => (
   <div {...tabPanelProps}>{value === index && children}</div>
@@ -25,6 +26,9 @@ const Services = () => {
       </AppBar>
       <TabPanel index={0} value={selectedTabIndex}>
         <CreateNewServiceForm />
+      </TabPanel>
+      <TabPanel index={1} value={selectedTabIndex}>
+        <EditServicesTable />
       </TabPanel>
     </div>
   );

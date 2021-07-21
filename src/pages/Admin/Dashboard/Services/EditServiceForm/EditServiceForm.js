@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   Button,
@@ -8,39 +9,40 @@ import {
   MenuItem,
   Select
 } from "@material-ui/core";
-import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
-import { ButtonContainer, StyledForm, StyledTextField } from "./Styles";
 import {
-  CREATE_NEW_SERVICE,
+  DELETE_SERVICE,
+  EDIT_SERVICE,
   SIGN_REQUEST
 } from "../../../../../shared/utils/api";
+import { ButtonContainer, StyledForm, StyledTextField } from "./Styles";
 
-const CreateNewServiceForm = () => {
-  const [duration, setDuration] = useState(30);
+const EditServiceForm = ({ refetch, service }) => {
+  const [duration, setDuration] = useState(service.duration);
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [options, setOptions] = useState([]);
-  const [productAvailable, setProductAvailable] = useState(true);
+  const [options, setOptions] = useState(service.options);
+  const [serviceAvailable, setServiceAvailable] = useState(service.available);
 
-  const history = useHistory();
+  const { data: signRequestData, loading: signRequestLoading } =
+    useQuery(SIGN_REQUEST);
   const [
-    createNewService,
-    { data: createNewServiceData, loading: createNewServiceLoading }
-  ] = useMutation(CREATE_NEW_SERVICE);
-  const { data: signRequestData, loading: singRequestLoading } = useQuery(
-    SIGN_REQUEST,
-    {
-      fetchPolicy: "no-cache"
-    }
-  );
+    deleteService,
+    { data: deleteServiceData, loading: deleteServiceLoading }
+  ] = useMutation(DELETE_SERVICE);
+  const [editService, { loading: editServiceLoading }] =
+    useMutation(EDIT_SERVICE);
 
   const formik = useFormik({
-    initialValues: { name: "", description: "", price: 0, salePrice: 0 },
+    initialValues: {
+      name: service.name,
+      description: service.description,
+      price: service.price,
+      salePrice: service?.salePrice || 0
+    },
     onSubmit: async ({ name, description, price, salePrice }) => {
       setLoading(() => true);
       const createForm = (file) => {
@@ -66,16 +68,17 @@ const CreateNewServiceForm = () => {
 
         const images = responses.map(({ data: { url } }) => url);
 
-        createNewService({
+        editService({
           variables: {
-            createNewServiceData: {
-              available: productAvailable,
+            editServiceData: {
+              available: serviceAvailable,
               description,
               duration,
-              images,
+              images: files.length ? images : service.images,
               name,
               options,
               price,
+              serviceId: service._id,
               ...(Boolean(salePrice) && { salePrice })
             }
           }
@@ -88,20 +91,16 @@ const CreateNewServiceForm = () => {
     validationSchema: Yup.object({
       name: Yup.string().required("Product name is required."),
       description: Yup.string().required("Product description is required."),
-      price: Yup.number("Price must be a number.").required(
-        "Product price is required."
-      ),
-      salePrice: Yup.number("Price must be a number")
+      price: Yup.number().required("Product price is required."),
+      salePrice: Yup.number()
     })
   });
 
   useEffect(() => {
-    if (createNewServiceData) {
-      if (createNewServiceData.createNewService._id) {
-        history.push("/services");
-      }
+    if (deleteServiceData) {
+      if (deleteServiceData.deleteService) refetch();
     }
-  }, [createNewServiceData]);
+  }, [deleteServiceData]);
 
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
@@ -109,9 +108,9 @@ const CreateNewServiceForm = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={productAvailable}
+              checked={serviceAvailable}
               onChange={({ target: { checked } }) =>
-                setProductAvailable(() => checked)
+                setServiceAvailable(() => checked)
               }
             />
           }
@@ -148,10 +147,19 @@ const CreateNewServiceForm = () => {
           <MenuItem value={90}>90</MenuItem>
         </Select>
       </FormControl>
-      <h2>Options</h2>
+      <h3>Images</h3>
+      <div style={{ display: "flex" }}>
+        {service.images.map((image, index) => (
+          <div key={index}>
+            <img alt="product" src={image} width="200" />
+          </div>
+        ))}
+      </div>
+      <h3>Options</h3>
       <div>
         {["color", "theme", "text"].map((option) => (
           <FormControlLabel
+            checked={options.includes(option)}
             control={<Checkbox />}
             key={option}
             label={option}
@@ -172,7 +180,7 @@ const CreateNewServiceForm = () => {
         {...formik.getFieldProps("price")}
       />
       <StyledTextField
-        label="sale price"
+        label="salePrice"
         type="number"
         variant="outlined"
         {...formik.getFieldProps("salePrice")}
@@ -180,16 +188,48 @@ const CreateNewServiceForm = () => {
       <ButtonContainer>
         <Button
           color="secondary"
-          component="label"
-          onChange={({ target: { files } }) => setFiles(() => files)}
+          disabled={
+            deleteServiceLoading ||
+            editServiceLoading ||
+            loading ||
+            signRequestLoading
+          }
+          onClick={() =>
+            deleteService({
+              variables: { deleteServiceData: { serviceId: service._id } }
+            })
+          }
           variant="contained"
         >
-          Upload Images
-          <input hidden multiple type="file" />
+          Delete
         </Button>
         <Button
           color="secondary"
-          disabled={loading || createNewServiceLoading || singRequestLoading}
+          component="label"
+          disabled={
+            deleteServiceLoading ||
+            editServiceLoading ||
+            loading ||
+            signRequestLoading
+          }
+          variant="contained"
+        >
+          Upload Images
+          <input
+            hidden
+            multiple
+            onChange={({ target: { files } }) => setFiles(() => files)}
+            type="file"
+          />
+        </Button>
+        <Button
+          color="secondary"
+          disabled={
+            deleteServiceLoading ||
+            editServiceLoading ||
+            loading ||
+            signRequestLoading
+          }
           type="submit"
           variant="contained"
         >
@@ -200,4 +240,4 @@ const CreateNewServiceForm = () => {
   );
 };
 
-export default CreateNewServiceForm;
+export default EditServiceForm;

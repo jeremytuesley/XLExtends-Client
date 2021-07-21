@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTable } from "react-table";
 
-import { EditProductForm } from "../EditProductForm";
-import { GET_ALL_PRODUCTS } from "../../../../../shared/utils/api";
+import { EditServiceForm } from "../EditServiceForm";
+import { GET_ALL_SERVICES } from "../../../../../shared/utils/api";
 import { StyledTableData, StyledTableRow } from "./Styles";
 
-const Table = ({ columns, data, onClick, refetch, selectedProduct }) => {
+const Table = ({ columns, data, onClick, refetch, selectedService }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
 
@@ -35,10 +35,10 @@ const Table = ({ columns, data, onClick, refetch, selectedProduct }) => {
                   {...cell.getCellProps()}
                 >
                   {cell.render("Cell")}
-                  {cell.column.Header === "name" &&
-                    selectedProduct === row.original._id && (
-                      <EditProductForm
-                        product={row.original}
+                  {cell.column.Header === "Name" &&
+                    selectedService === row.original._id && (
+                      <EditServiceForm
+                        service={row.original}
                         refetch={refetch}
                       />
                     )}
@@ -52,34 +52,34 @@ const Table = ({ columns, data, onClick, refetch, selectedProduct }) => {
   );
 };
 
-const EditProductTable = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+const EditServicesTable = () => {
+  const [selectedService, setSelectedService] = useState(null);
 
-  const { data: getAllProductsData, refetch } = useQuery(GET_ALL_PRODUCTS);
+  const { data: getAllServicesData, refetch } = useQuery(GET_ALL_SERVICES);
 
   return (
     <div>
-      {getAllProductsData?.getAllProducts && (
+      {getAllServicesData?.getAllServices && (
         <Table
           columns={[
             {
-              Header: "Products",
+              Header: "Services",
               columns: [
-                { Header: "name", accessor: "name" },
-                { Header: "description", accessor: "description" },
+                { Header: "Name", accessor: "name" },
+                { Header: "Description", accessor: "description" },
                 { Header: "Price", accessor: "price" },
                 { Header: "Sale Price", accessor: "salePrice" }
               ]
             }
           ]}
-          data={getAllProductsData?.getAllProducts}
-          onClick={(productId) => setSelectedProduct(() => productId)}
+          data={getAllServicesData?.getAllServices}
+          onClick={(serviceId) => setSelectedService(() => serviceId)}
           refetch={refetch}
-          selectedProduct={selectedProduct}
+          selectedService={selectedService}
         />
       )}
     </div>
   );
 };
 
-export default EditProductTable;
+export default EditServicesTable;
