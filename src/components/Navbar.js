@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCartOutlined/";
 import { IconButton, Fade, Popper } from "@material-ui/core";
+
+import useCartModel from "../hooks/useCart";
 import Cart from "./Cart";
 
 import "../assets/nav.scss";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const { cartDisplay, setCartDisplay } = useCartModel();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOnClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
-    setOpen(!open);
+    setCartDisplay(!cartDisplay ? true : false);
   };
 
   return (
@@ -31,10 +33,17 @@ const Navbar = () => {
           </IconButton>
         </div>
       </div>
-      <Popper open={open} anchorEl={anchorEl} placement="bottom-end" transition>
+      <Popper
+        open={cartDisplay}
+        anchorEl={anchorEl}
+        placement="bottom-end"
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
-            <Cart />
+            <div>
+              <Cart />
+            </div>
           </Fade>
         )}
       </Popper>

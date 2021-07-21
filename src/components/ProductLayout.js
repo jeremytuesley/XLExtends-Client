@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Customizations from "./Customizations";
 import Error from "./Error";
 import Loading from "./Loading";
-// import DisplayCart from "./Cart"; TODO: when user adds to cart, temporarily display cart ?? maybe
-import { useState } from "react";
+import useCartModel from "../hooks/useCart";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
@@ -11,18 +10,19 @@ import "../assets/productlayout.scss";
 const ProductLayout = ({ dataResult, loading, error }) => {
   const [activeImage, setActiveImage] = useState();
   const customRef = useRef();
+  const { cartData, setCart, setCartDisplay } = useCartModel();
 
   const isProduct = dataResult?.__typename === "Product";
 
   const handleCartClick = async () => {
-    const cartData = JSON.parse(localStorage.getItem("Cart")) || [];
     if (dataResult.options.length > 0) {
       const customChoices = await customRef.current.submit();
       if (!customChoices) return;
       dataResult.customChoices = customChoices;
     }
     cartData.push(dataResult);
-    localStorage.setItem("Cart", JSON.stringify(cartData));
+    setCart([...cartData]);
+    setCartDisplay(true);
   };
 
   if (loading) return <Loading />;

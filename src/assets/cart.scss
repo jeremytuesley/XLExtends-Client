@@ -4,8 +4,21 @@
   box-shadow: 4px 4px 10px rgb(184, 180, 180), 2px 2px 5px #ee397f;
   border-radius: 10px;
   width: 440px;
+  display: flex;
+  flex-direction: column;
   .cartContents {
     padding: 1em 1em 0;
+    flex-grow: 1;
+    .emptyCart {
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 20px;
+      text-align: center;
+      svg {
+        color: #dadada;
+        font-size: 160px;
+        left: 140px;
+      }
+    }
 
     .cartTop {
       display: flex;
