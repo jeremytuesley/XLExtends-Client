@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 import { Admin } from "./pages/Admin";
 import Home from "./pages/Home";
@@ -16,6 +18,11 @@ import PrivPolicy from "./pages/PrivPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import ShipPolicy from "./pages/ShipPolicy";
 import ServiceTerms from "./pages/ServiceTerms";
+import PaymentForm from "./pages/PaymentForm";
+
+const stripePromise = loadStripe(
+  "pk_test_51JEWAsIN4skQxqwDFyYQyNyYq6vzhmHPbQ93DbX8sYImYs60EaaohIyONc9IPSh7uJ9V24zfjpejrlcK0Bb7oeYM00YSPe3FOa"
+);
 
 function App() {
   return (
@@ -34,6 +41,9 @@ function App() {
         <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
         <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
         <Route path="/legalpolicies/termsofservice" component={ServiceTerms} />
+        <Elements stripe={stripePromise}>
+          <Route path="/payment" component={PaymentForm} />
+        </Elements>
         <Route component={Error} />
       </Switch>
       <Footer />
