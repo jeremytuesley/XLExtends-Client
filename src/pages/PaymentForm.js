@@ -34,6 +34,19 @@ const PaymentForm = () => {
     return cartIds;
   };
 
+  const { loading, data } = useQuery(PAYMENT_INTENT, {
+    fetchPolicy: "no-cache",
+    variables: {
+      paymentIntentData: {
+        shipping: false,
+        productId: concatItemIds(),
+        //   serviceId: [id],
+        discount: ""
+      }
+    }
+  });
+  console.log(data?.paymentIntent);
+
   const validationSchema = yup.object({
     name: yup
       .string("*Please enter your name")
@@ -49,29 +62,24 @@ const PaymentForm = () => {
     // shipping: yup.bool()
   });
 
-  const arrayOfIds = concatItemIds();
-
-  const { loading, data } = useQuery(PAYMENT_INTENT, {
-    fetchPolicy: "no-cache",
-    variables: {
-      shipping: false,
-      productId: arrayOfIds,
-      //   serviceId: [id],
-      discount: ""
-    }
-  });
-
-  console.log(data?.paymentIntent);
-
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    console.log("submit");
+    //   event.preventDefault();
+
+    console.log("submit2");
     setProcessing(true);
 
-    const payload = await stripe.confirmCardPayment(data, {
-      payment_method: {
-        card: elements.getElement(CardElement)
+    console.log("submit3");
+
+    const payload = await stripe.confirmCardPayment(
+      data?.paymentIntent?.clientSecret,
+      {
+        payment_method: {
+          card: elements.getElement(CardElement)
+        }
       }
-    });
+    );
+    console.log("payload", payload);
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
@@ -82,9 +90,7 @@ const PaymentForm = () => {
     }
   };
 
-  const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
+  const handleCreditCardChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
@@ -129,7 +135,15 @@ const PaymentForm = () => {
             <div className="productPurchaseForm"></div>
             Payment Form here, render either booking form or product payment
             form
-            <CardElement className="cardElement" onChange={handleChange} />
+            <CardElement
+              className="cardElement"
+              onChange={handleCreditCardChange}
+            />
+            {error && (
+              <div className="card-error" role="alert">
+                {error}
+              </div>
+            )}
             <Button
               variant="contained"
               color="primary"
@@ -139,11 +153,6 @@ const PaymentForm = () => {
             >
               Submit Purchase
             </Button>
-            {error && (
-              <div className="card-error" role="alert">
-                {error}
-              </div>
-            )}
             <div
               className={succeeded ? "result-message" : "result-message hidden"}
             >

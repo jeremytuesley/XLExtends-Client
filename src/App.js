@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { PUBLISHABLE_KEY } from "./constants";
 
 import { Admin } from "./pages/Admin";
 import Home from "./pages/Home";
@@ -20,9 +21,7 @@ import ShipPolicy from "./pages/ShipPolicy";
 import ServiceTerms from "./pages/ServiceTerms";
 import PaymentForm from "./pages/PaymentForm";
 
-const stripePromise = loadStripe(
-  "pk_test_51JEWAsIN4skQxqwDFyYQyNyYq6vzhmHPbQ93DbX8sYImYs60EaaohIyONc9IPSh7uJ9V24zfjpejrlcK0Bb7oeYM00YSPe3FOa"
-);
+const stripePromise = loadStripe(PUBLISHABLE_KEY);
 
 function App() {
   return (
