@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CONTACT } from "../shared/utils";
-import { ADDRESS, PHNUMBER } from "../constants";
+import { ADDRESS } from "../constants";
 import location from "../assets/location.png";
 import Loading from "../components/Loading";
 

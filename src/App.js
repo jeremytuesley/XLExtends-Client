@@ -19,7 +19,7 @@ import PrivPolicy from "./pages/PrivPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import ShipPolicy from "./pages/ShipPolicy";
 import ServiceTerms from "./pages/ServiceTerms";
-import PaymentForm from "./pages/PaymentForm";
+import Purchase from "./pages/Purchase";
 
 const stripePromise = loadStripe(PUBLISHABLE_KEY);
 
@@ -41,7 +41,7 @@ function App() {
         <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
         <Route path="/legalpolicies/termsofservice" component={ServiceTerms} />
         <Elements stripe={stripePromise}>
-          <Route path="/payment" component={PaymentForm} />
+          <Route path="/payment" component={Purchase} />
         </Elements>
         <Route component={Error} />
       </Switch>

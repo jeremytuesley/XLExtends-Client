@@ -64,7 +64,7 @@ const shippingValidationSchema = {
     .required("*This field is required")
 };
 
-const ProductPaymentForm = () => {
+const ProductPaymentForm = ({ setShipping }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -149,6 +149,11 @@ const ProductPaymentForm = () => {
     onSubmit: handleSubmit
   });
 
+  const handleShippingChange = (event) => {
+    setShipping(event.target.value);
+    formik.setFieldValue("shipping", event.target.value);
+  };
+
   useEffect(() => {
     if (formik.values.shipping === "true") {
       setValidateSchema({
@@ -215,9 +220,7 @@ const ProductPaymentForm = () => {
               aria-label="shipping"
               name="shipping"
               value={formik.values.shipping}
-              onChange={(event) => {
-                formik.setFieldValue("shipping", event.target.value);
-              }}
+              onChange={handleShippingChange}
             >
               <FormControlLabel
                 value="true"
