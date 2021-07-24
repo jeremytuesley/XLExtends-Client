@@ -4,6 +4,33 @@
 
   .paymentFormContainer {
     width: 60%;
+    .cardField {
+      padding: 1em;
+      border: 1px solid #dadada;
+      border-radius: 5px;
+      width: 87%;
+    }
+    .MuiButton-contained {
+      padding: 12px 3em;
+      margin-top: 10px;
+    }
+    .fullSizeField {
+      width: 92%;
+      margin-bottom: 10px;
+    }
+    .halfSizeField {
+      width: 45%;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .streetNumberField {
+      width: 20%;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .streetField {
+      width: 70%;
+    }
     .card-error {
       color: red;
     }
@@ -12,18 +39,12 @@
       font-family: "Noto Sans JP", sans-serif;
       margin-bottom: 15px;
     }
-    .contactDetailContainer {
-      .MuiFormControl-root {
-        width: 45%;
-        margin-right: 15px;
-        margin-bottom: 10px;
-      }
-    }
     .productPurchaseForm {
       .deliveryOptions {
         padding: 5px 0;
         border-top: 1px solid #dadada;
         border-bottom: 1px solid #dadada;
+        margin-bottom: 10px;
       }
     }
 
