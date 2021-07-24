@@ -3,21 +3,46 @@
   justify-content: space-around;
 
   .paymentFormContainer {
+    width: 60%;
+    .card-error {
+      color: red;
+    }
+    .inputHeader {
+      font-size: 20px;
+      font-family: "Noto Sans JP", sans-serif;
+      margin-bottom: 15px;
+    }
     .contactDetailContainer {
       .MuiFormControl-root {
-        width: 100%;
-        margin-right: 20px;
+        width: 45%;
+        margin-right: 15px;
         margin-bottom: 10px;
       }
     }
+    .productPurchaseForm {
+      .deliveryOptions {
+        padding: 5px 0;
+        border-top: 1px solid #dadada;
+        border-bottom: 1px solid #dadada;
+      }
+    }
+
+    // after submitting
+    .result-message {
+      color: lime;
+      display: block;
+    }
+    .hidden {
+      display: none;
+    }
   }
-  .result-message {
-    display: block;
-  }
-  .hidden {
-    display: none;
+  .MuiFormGroup-root {
+    .MuiFormControlLabel-root {
+      margin-right: 100px;
+    }
   }
 
+  // Right Side, Items being purchased and subtotals
   .paymentItems {
     border-left: 2px solid #dadada;
     min-width: 40%;
@@ -28,23 +53,14 @@
       font-weight: bolder;
     }
 
-    .arrowIcon {
-      border-bottom: 1px solid #cccbcb;
-      width: 80%;
-      margin: 0 auto;
-      svg {
-        width: 100%;
-        margin: 0 auto;
-      }
-    }
-
     .productCardsContainer {
       overflow-y: scroll;
       overflow-x: hidden;
       padding-right: 10px;
       margin: 10px 15px;
-      height: 120px;
+      height: 140px;
       .productCards {
+        padding: 10px 0;
         display: flex;
         height: 100px;
         border-bottom: 1px solid #dadada;
