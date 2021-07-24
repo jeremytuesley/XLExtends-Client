@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import { ADDRESS, PHNUMBER } from "../constants";
 import "../assets/payment.scss";
+import { Link } from "react-router-dom";
 
 const initialValidationSchema = {
   firstName: yup
@@ -87,7 +88,7 @@ const ProductPaymentForm = () => {
     return cartIds;
   };
 
-  const { loading, data } = useQuery(PAYMENT_INTENT, {
+  const { data } = useQuery(PAYMENT_INTENT, {
     fetchPolicy: "no-cache",
     variables: {
       paymentIntentData: {
@@ -122,6 +123,7 @@ const ProductPaymentForm = () => {
       setProcessing(false);
       setSucceeded(true);
       values.shipping = Boolean(values.shipping);
+      setCart([]);
     }
   };
 
@@ -313,15 +315,27 @@ const ProductPaymentForm = () => {
             {error}
           </div>
         )}
-        <Button
-          variant="contained"
-          color="primary"
-          className="submitButton"
-          type="submit"
-          disabled={processing || disabled || succeeded}
-        >
-          Pay now
-        </Button>
+        <div className="paymentButtonContainer">
+          <Button
+            variant="contained"
+            color="primary"
+            className="submitButton"
+            type="submit"
+            disabled={processing || disabled || succeeded}
+          >
+            Pay now
+          </Button>
+          <div className="continueShoppingLink">
+            Not finished yet?
+            <br />{" "}
+            <Link
+              to="/products"
+              style={{ color: "blue", textDecoration: "underline" }}
+            >
+              Continue Shopping
+            </Link>
+          </div>
+        </div>
         <div className={succeeded ? "result-message" : "result-message hidden"}>
           Payment succeeded!
         </div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CONTACT } from "../shared/utils";
+import { ADDRESS, PHNUMBER } from "../constants";
+import location from "../assets/location.png";
 import Loading from "../components/Loading";
 
 import { useFormik } from "formik";
@@ -197,6 +199,19 @@ const Contact = () => {
             <InstagramIcon />
             Instagram
           </a>
+          <div className="locationContainer">
+            <div className="socialsTitle">Location</div>
+            <a
+              href="https://goo.gl/maps/ZyBavNUg4BdLBNYu8"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="imageContainer">
+                <img src={location} alt="googleMapImage" />
+              </div>
+              {ADDRESS}
+            </a>
+          </div>
         </div>
       </div>
     </div>

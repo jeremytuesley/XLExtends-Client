@@ -4,6 +4,14 @@
 
   .paymentFormContainer {
     width: 60%;
+    .paymentButtonContainer {
+      display: flex;
+      justify-content: space-between;
+      .continueShoppingLink {
+        margin-top: 10px;
+        margin-right: 50px;
+      }
+    }
     .cardField {
       padding: 1em;
       border: 1px solid #dadada;
