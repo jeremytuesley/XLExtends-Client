@@ -10,7 +10,7 @@ import * as yup from "yup";
 
 import "../assets/contact.scss";
 import { TextField, Button, Snackbar } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+// import { Alert } from "@material-ui/lab";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -72,9 +72,9 @@ const Contact = () => {
         autoHideDuration={4000}
         onClose={() => setErrorBar(false)}
       >
-        <Alert severity="error" onClose={() => setErrorBar(false)}>
+        {/* <Alert severity="error" onClose={() => setErrorBar(false)}>
           Something went wrong! Form did not send.
-        </Alert>
+        </Alert> */}
       </Snackbar>
       <div className="contactPage">
         <div className="sideDecoration"></div>
