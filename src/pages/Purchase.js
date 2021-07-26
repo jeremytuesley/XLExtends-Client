@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Error from "../components/Error";
 import useCartModel from "../hooks/useCart";
 import ProductPaymentForm from "../components/ProductPaymentForm";
 import { TextField, Button } from "@material-ui/core";
@@ -39,6 +39,8 @@ const Purchase = () => {
 
     return { totalCost, subtotalCost };
   };
+
+  if (cartData.length === 0) return <Error />;
 
   return (
     <div className="content">
