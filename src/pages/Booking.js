@@ -18,7 +18,6 @@ const Booking = () => {
 
   if (!bookingData) return <Error />;
 
-  console.log(bookingData);
   return (
     <div className="content">
       <div className="paymentPage">
