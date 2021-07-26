@@ -14,31 +14,47 @@ import {
   MenuItem
 } from "@material-ui/core";
 import DateFnsAdapter from "@material-ui/pickers/adapter/date-fns";
-import add from "date-fns/add";
-import set from "date-fns/set";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
+import { CHECK_AVAILABILITY } from "../shared/utils";
+import { useQuery } from "@apollo/client";
+import { format, add, set } from "date-fns";
 
 const tomorrow = add(new Date(), {
   days: 1
 });
 
-const fortnight = add(new Date(), {
-  days: 14
+const month = add(new Date(), {
+  months: 1
 });
 
 const ProductLayout = ({ dataResult, loading, error }) => {
   const [activeImage, setActiveImage] = useState();
   const [time, setTime] = useState();
+  const [invalid, setInvalid] = useState(null);
   const customRef = useRef();
   const { cartData, setCart, setCartDisplay } = useCartModel();
   const [selectedDate, handleDateChange] = useState(
     set(new Date(tomorrow), { hours: 9, minutes: 0 })
   );
-  const serviceHour = SERVICE_END_TIME - SERVICE_START_TIME;
 
-  console.log(selectedDate);
+  const { data } = useQuery(CHECK_AVAILABILITY, {
+    fetchPolicy: "no-cache",
+    variables: {
+      checkAvailabilityData: {
+        quantity: 1,
+        timeUnit: "month"
+      }
+    }
+  });
+
+  const unavailableDays = (date) => {
+    if (data?.checkAvailability.includes(format(new Date(date), "yyyy-MM-dd")))
+      return true;
+  };
+
+  const serviceHour = SERVICE_END_TIME - SERVICE_START_TIME;
 
   const isProduct = dataResult?.__typename === "Product";
 
@@ -51,6 +67,10 @@ const ProductLayout = ({ dataResult, loading, error }) => {
     cartData.push(dataResult);
     setCart([...cartData]);
     setCartDisplay(true);
+  };
+
+  const handleSubmit = () => {
+    if (invalid) return;
   };
 
   if (loading) return <Loading />;
@@ -115,14 +135,25 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                     <LocalizationProvider dateAdapter={DateFnsAdapter}>
                       <DatePicker
                         renderInput={(props) => (
-                          <TextField required variant="outlined" {...props} />
+                          <TextField
+                            required
+                            variant="outlined"
+                            {...props}
+                            error={invalid}
+                            helperText="Please select an available date"
+                          />
                         )}
                         label="Booking Date"
                         value={selectedDate}
                         inputVariant="outlined"
+                        disableHighlightToday={true}
                         onChange={handleDateChange}
                         minDate={tomorrow}
-                        maxDate={fortnight}
+                        maxDate={month}
+                        shouldDisableDate={unavailableDays}
+                        onError={(er) => {
+                          setInvalid(er);
+                        }}
                       />
                     </LocalizationProvider>
                     <FormControl>
@@ -135,17 +166,12 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                         defaultValue={9}
                         onChange={(event) => setTime(event.target.value)}
                       >
-                        {[...Array(serviceHour)].map(
-                          (
-                            e,
-                            i // 18-9 = 9
-                          ) => (
-                            <MenuItem value={i + 9}>
-                              {i < 1 && "0"}
-                              {i + 9}:00
-                            </MenuItem>
-                          )
-                        )}
+                        {[...Array(serviceHour)].map((e, i) => (
+                          <MenuItem value={i + 9}>
+                            {i < 1 && "0"}
+                            {i + 9}:00
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </div>
@@ -164,7 +190,7 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                   </div>
                 </div>
               )}
-              <div className="buyButton" type="submit">
+              <div className="buyButton" type="submit" onSubmit={handleSubmit}>
                 {isProduct ? "Proceed to payment" : "Book now"}
               </div>
             </div>
