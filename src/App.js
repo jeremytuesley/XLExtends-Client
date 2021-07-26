@@ -20,6 +20,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ShipPolicy from "./pages/ShipPolicy";
 import ServiceTerms from "./pages/ServiceTerms";
 import Purchase from "./pages/Purchase";
+import Booking from "./pages/Booking";
 
 const stripePromise = loadStripe(PUBLISHABLE_KEY);
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/legalpolicies/termsofservice" component={ServiceTerms} />
         <Elements stripe={stripePromise}>
           <Route path="/payment" component={Purchase} />
+          <Route path="/booking" component={Booking} />
         </Elements>
         <Route component={Error} />
       </Switch>

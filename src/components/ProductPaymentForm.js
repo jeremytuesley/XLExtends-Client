@@ -102,7 +102,6 @@ const ProductPaymentForm = ({ setShipping }) => {
   const handleSubmit = async (values) => {
     console.log("submit");
     console.log(values);
-    //   event.preventDefault();
 
     setProcessing(true);
 

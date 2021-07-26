@@ -4,6 +4,7 @@ import Error from "./Error";
 import Loading from "./Loading";
 import useCartModel from "../hooks/useCart";
 import { SERVICE_START_TIME, SERVICE_END_TIME } from "../constants";
+import { useHistory } from "react-router-dom";
 
 import { DatePicker, LocalizationProvider } from "@material-ui/pickers";
 import {
@@ -30,6 +31,8 @@ const month = add(new Date(), {
 });
 
 const ProductLayout = ({ dataResult, loading, error }) => {
+  const history = useHistory();
+
   const [activeImage, setActiveImage] = useState();
   const [time, setTime] = useState();
   const [invalid, setInvalid] = useState(null);
@@ -58,7 +61,7 @@ const ProductLayout = ({ dataResult, loading, error }) => {
 
   const isProduct = dataResult?.__typename === "Product";
 
-  const handleCartClick = async () => {
+  const handleProductClick = async (type) => {
     if (dataResult.options.length > 0) {
       const customChoices = await customRef.current.submit();
       if (!customChoices) return;
@@ -66,11 +69,16 @@ const ProductLayout = ({ dataResult, loading, error }) => {
     }
     cartData.push(dataResult);
     setCart([...cartData]);
-    setCartDisplay(true);
+    if (type === "cart") {
+      setCartDisplay(true);
+    } else if (type === "purchase") {
+      history.push("/payment");
+    }
   };
 
-  const handleSubmit = () => {
+  const handleBookingClick = () => {
     if (invalid) return;
+    history.push("/booking");
   };
 
   if (loading) return <Loading />;
@@ -183,16 +191,28 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                 </>
               )}
               {isProduct && (
-                <div className="cartButton" onClick={handleCartClick}>
+                <div
+                  className="cartButton"
+                  onClick={() => handleProductClick("cart")}
+                >
                   <div className="cartButtonContainer">
                     <AddShoppingCartIcon />
                     <div>Add to cart</div>
                   </div>
                 </div>
               )}
-              <div className="buyButton" type="submit" onSubmit={handleSubmit}>
-                {isProduct ? "Proceed to payment" : "Book now"}
-              </div>
+              {isProduct ? (
+                <div
+                  className="buyButton"
+                  onClick={() => handleProductClick("purchase")}
+                >
+                  Proceed to Payment
+                </div>
+              ) : (
+                <div className="buyButton" onClick={handleBookingClick}>
+                  Book now
+                </div>
+              )}
             </div>
           </div>
         </div>

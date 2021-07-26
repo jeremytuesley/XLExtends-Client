@@ -34,6 +34,9 @@ const Purchase = () => {
         totalCost = subtotalCost;
       }
     });
+    totalCost = parseFloat(totalCost).toFixed(2);
+    subtotalCost = parseFloat(subtotalCost).toFixed(2);
+
     return { totalCost, subtotalCost };
   };
 
