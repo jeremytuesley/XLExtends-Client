@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import useCartModel from "../hooks/useCart";
 import { SERVICE_START_TIME, SERVICE_END_TIME } from "../constants";
 import { useHistory } from "react-router-dom";
+import useBookingModel from "../hooks/useBooking";
 
 import { DatePicker, LocalizationProvider } from "@material-ui/pickers";
 import {
@@ -34,10 +35,11 @@ const ProductLayout = ({ dataResult, loading, error }) => {
   const history = useHistory();
 
   const [activeImage, setActiveImage] = useState();
-  const [time, setTime] = useState();
+  const [time, setTime] = useState(9);
   const [invalid, setInvalid] = useState(null);
   const customRef = useRef();
   const { cartData, setCart, setCartDisplay } = useCartModel();
+  const { setBookingData } = useBookingModel();
   const [selectedDate, handleDateChange] = useState(
     set(new Date(tomorrow), { hours: 9, minutes: 0 })
   );
@@ -78,6 +80,10 @@ const ProductLayout = ({ dataResult, loading, error }) => {
 
   const handleBookingClick = () => {
     if (invalid) return;
+    let serviceData = { ...dataResult };
+    set(new Date(selectedDate), { hours: time });
+    serviceData.startTime = selectedDate;
+    setBookingData(serviceData);
     history.push("/booking");
   };
 
