@@ -10,7 +10,7 @@ import BookingPaymentForm from "../components/BookingPaymentForm";
 
 const Booking = () => {
   const { bookingData, setBookingData } = useBookingModel();
-  const [bookingFee, setBookingFee] = useState("true");
+  const [shipping, setShipping] = useState("true");
 
   const serviceCost = !bookingData?.salePrice
     ? bookingData?.price
@@ -22,7 +22,7 @@ const Booking = () => {
   return (
     <div className="content">
       <div className="paymentPage">
-        <BookingPaymentForm setBookingFee={(value) => setBookingFee(value)} />
+        <BookingPaymentForm setShipping={(value) => setShipping(value)} />
         <div className="paymentItems bookingItems">
           <div className="paymentItemTitle">Order Summary</div>
           <div className="productCardsContainer">
@@ -44,20 +44,20 @@ const Booking = () => {
               </div>
               <div className="priceDetailContainer">
                 <div>Booking Fee</div>
-                {bookingFee === "true" ? <div>$15</div> : <div>$0</div>}
+                {shipping === "true" ? <div>$15</div> : <div>$0</div>}
               </div>
             </div>
             <div className="totalPriceContainer">
               <div>
                 Total
-                {bookingFee === "true" && (
+                {shipping === "true" && (
                   <div style={{ fontSize: "14px", color: "grey" }}>
                     Service Fee will be payable on site
                   </div>
                 )}
               </div>
               <div>
-                {bookingFee === "true" ? (
+                {shipping === "true" ? (
                   <div>
                     AUD$15
                     <br />

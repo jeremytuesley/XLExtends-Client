@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 import useCartModel from "../hooks/useCart";
@@ -8,6 +8,7 @@ import "../assets/cart.scss";
 
 const Cart = () => {
   const { cartData, setCart } = useCartModel();
+  const history = useHistory();
 
   const calcTotalCost = () => {
     let totalCost = 0;
@@ -24,6 +25,10 @@ const Cart = () => {
   const handleDeleteClick = (key) => {
     cartData.splice(key, 1);
     setCart([...cartData]);
+  };
+
+  const handleCheckOutClick = () => {
+    history.push("/payment");
   };
 
   return (
@@ -106,7 +111,13 @@ const Cart = () => {
         <div>Sub-total</div>
         <div>${calcTotalCost()}</div>
       </div>
-      <div className="checkoutButton">Checkout</div>
+      <div
+        className="checkoutButton"
+        style={{ cursor: "pointer" }}
+        onClick={handleCheckOutClick}
+      >
+        Checkout
+      </div>
     </div>
   );
 };
