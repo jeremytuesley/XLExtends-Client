@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CONTACT } from "../shared/utils";
-import { ADDRESS } from "../constants";
+import { ADDRESS, EMAIL_ADDRESS, FACEBOOK, INSTAGRAM } from "../constants";
 import location from "../assets/location.png";
 import Loading from "../components/Loading";
 
@@ -171,18 +171,18 @@ const Contact = () => {
           </p>
           <b>
             <a
-              href="mailto:xlextends@gmail.com"
+              href={`mailto:${EMAIL_ADDRESS}`}
               target="_blank"
               rel="noreferrer"
               className="email"
             >
-              Email: xlextends@gmail.com
+              Email: {EMAIL_ADDRESS}
             </a>
             <br />
           </b>
           <br />
           <a
-            href="https://www.facebook.com/XL-Extends-104815671697497"
+            href={FACEBOOK}
             target="_blank"
             rel="noreferrer"
             className="smLinks"
@@ -191,7 +191,7 @@ const Contact = () => {
             Facebook
           </a>
           <a
-            href="https://www.instagram.com/xlextends"
+            href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
             className="smLinks"

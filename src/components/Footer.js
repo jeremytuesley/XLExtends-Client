@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import WhiteLogo from "../assets/WhiteLogo.png";
+import { FACEBOOK, INSTAGRAM, EMAIL_ADDRESS } from "../constants";
 
 import "../assets/footer.scss";
 
@@ -27,26 +28,22 @@ const Footer = () => {
           </p>
           <b>
             <a
-              href="mailto:xlextends@gmail.com"
+              href={`mailto:${EMAIL_ADDRESS}`}
               target="_blank"
               rel="noreferrer"
               className="email"
             >
-              Email: xlextends@gmail.com
+              Email: {EMAIL_ADDRESS}
             </a>
             <br />
           </b>
           <br />
-          <a
-            href="https://www.facebook.com/XL-Extends-104815671697497"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={FACEBOOK} target="_blank" rel="noreferrer">
             <FacebookIcon />
             Facebook
           </a>
           <a
-            href="https://www.instagram.com/xlextends"
+            href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
             className="second"

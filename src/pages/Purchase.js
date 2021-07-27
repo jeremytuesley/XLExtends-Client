@@ -42,6 +42,8 @@ const Purchase = () => {
 
   if (cartData.length === 0) return <Error />;
 
+  console.log(cartData, "string");
+
   return (
     <div className="content">
       <div className="paymentPage">
