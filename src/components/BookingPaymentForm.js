@@ -46,7 +46,7 @@ const BookingPaymentForm = ({ setShipping }) => {
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [validateSchema, setValidateSchema] = useState(initialValidationSchema);
-  const { bookingData, setBookingData } = useBookingModel();
+  const { bookingData } = useBookingModel();
 
   const { data } = useQuery(PAYMENT_INTENT, {
     fetchPolicy: "no-cache",

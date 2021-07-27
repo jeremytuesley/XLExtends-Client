@@ -21,6 +21,7 @@ const Contact = () => {
   const [submitForm, { loading, error, data }] = useMutation(CONTACT);
 
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       await submitForm({ variables: values });
     } catch (err) {

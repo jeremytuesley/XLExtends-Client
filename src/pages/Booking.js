@@ -9,7 +9,7 @@ import "../assets/payment.scss";
 import BookingPaymentForm from "../components/BookingPaymentForm";
 
 const Booking = () => {
-  const { bookingData, setBookingData } = useBookingModel();
+  const { bookingData } = useBookingModel();
   const [shipping, setShipping] = useState("true");
 
   const serviceCost = !bookingData?.salePrice
