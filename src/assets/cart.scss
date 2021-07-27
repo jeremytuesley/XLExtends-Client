@@ -1,0 +1,127 @@
+.cartContainer {
+  background-color: white;
+  height: 400px;
+  box-shadow: 4px 4px 10px rgb(184, 180, 180), 2px 2px 5px #ee397f;
+  border-radius: 10px;
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  .cartContents {
+    padding: 1em 1em 0;
+    flex-grow: 1;
+    .emptyCart {
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 20px;
+      text-align: center;
+      svg {
+        color: #dadada;
+        font-size: 160px;
+        left: 140px;
+      }
+    }
+
+    .cartTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid #dadada;
+      margin: 0 15px 20px;
+      .cartTitle {
+        font-size: 30px;
+        font-family: "Indie Flower", sans-serif;
+        font-weight: bolder;
+        min-width: 40%;
+      }
+    }
+
+    .productCardContainer {
+      overflow: scroll;
+      padding-right: 10px;
+      height: 204px;
+      .productCard {
+        display: flex;
+        height: 100px;
+        border-bottom: 1px solid #dadada;
+        padding: 7.5px 0;
+        .productImage {
+          width: 30%;
+          img {
+            max-width: 100%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+          }
+        }
+        .productDetailContainer {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 4px;
+          width: 70%;
+          .productTextContainer {
+            max-width: calc(70%-8px);
+            padding-right: 10px;
+            overflow: auto;
+            .productName {
+              font-weight: bold;
+              font-size: 15px;
+              margin-bottom: 3px;
+              &:hover {
+                color: #ee397f;
+              }
+            }
+            .productDesc {
+              overflow-wrap: break-word;
+              font-size: 12px;
+              color: #838383;
+            }
+            .customizationContainer {
+              padding-bottom: 2px;
+              border-bottom: 1px solid #dadada;
+              .customizationTitle {
+                font-family: "Noto Sans JP", sans-serif;
+              }
+            }
+          }
+          .productNumbersContainer {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin: 5px;
+            font-size: 16px;
+            .sale .normPrice {
+              text-decoration: line-through 2px #e24848;
+              color: #6d6b6b;
+            }
+            .delete {
+              &:hover {
+                color: red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .cartPrice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+    background-color: #f0efef;
+    div {
+      margin: 10px;
+    }
+  }
+  .checkoutButton {
+    font-family: "Noto Sans JP", sans-serif;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    height: 10%;
+    text-align: center;
+    line-height: 35px;
+    padding: 7px;
+    background-color: #038a03;
+  }
+}

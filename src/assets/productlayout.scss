@@ -1,0 +1,122 @@
+.datePickerContainer {
+  .MuiFormControl-root {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.singleProduct {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+  .imageContainer {
+    width: 500px;
+    display: flex;
+
+    .thumbnailContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-height: 395px;
+      max-width: 20%;
+      min-width: 20%;
+      img {
+        border: 2px solid #e6e6e6;
+        max-width: 100%;
+        margin-bottom: 5px;
+        cursor: pointer;
+        &.activeImage {
+          border: 2px solid #6d6b6b;
+        }
+      }
+    }
+    .biggerImageContainer {
+      margin-left: 10px;
+      max-width: calc(80% - 10px);
+      min-width: calc(80% - 10px);
+      .biggerImage {
+        height: 390px;
+        width: 390px;
+        overflow: hidden;
+        img {
+          margin-left: 50%;
+          transform: translateX(-50%);
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .productContainer {
+    width: 600px;
+    margin-left: 20px;
+    .productHeader {
+      display: flex;
+      .productTitle {
+        font-size: 28px;
+        font-family: "Noto Sans JP", sans-serif;
+        width: 80%;
+      }
+      .productPrice {
+        width: 20%;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .sale .normPrice {
+        text-decoration: line-through 2px #e24848;
+        color: #6d6b6b;
+      }
+    }
+    .productContent {
+      display: flex;
+      .paymentButtonsContainer {
+        min-width: 40%;
+        margin-top: 210px;
+      }
+      .serviceButtonsContainer {
+        min-width: 40%;
+        margin-top: 220px;
+        .bookingFee {
+          font-size: 12px;
+          color: grey;
+        }
+      }
+      .buyButton {
+        cursor: pointer;
+        background-color: #ee397f;
+        margin-top: 10px;
+        text-align: center;
+        color: white;
+        border-radius: 15px;
+        padding: 1em;
+        height: 25px;
+      }
+      .cartButton {
+        cursor: pointer;
+        background-color: #000000cc;
+        text-align: center;
+        color: white;
+        border-radius: 15px;
+        padding: 1em;
+        height: 25px;
+
+        .cartButtonContainer {
+          display: flex;
+          justify-content: center;
+          div {
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+    .productDetailContainer {
+      margin: 15px 20px 0 0;
+      width: 60%;
+    }
+    .productDescription {
+      hyphens: auto;
+      line-height: 28px;
+    }
+  }
+}

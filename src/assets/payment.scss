@@ -1,0 +1,169 @@
+.paymentPage {
+  display: flex;
+  justify-content: space-around;
+
+  .paymentFormContainer {
+    width: 60%;
+    .paymentButtonContainer {
+      display: flex;
+      justify-content: space-between;
+      .continueShoppingLink {
+        margin-top: 10px;
+        margin-right: 50px;
+      }
+    }
+    .cardField {
+      padding: 1em;
+      border: 1px solid #dadada;
+      border-radius: 5px;
+      width: 87%;
+    }
+    .MuiButton-contained {
+      padding: 12px 3em;
+      margin-top: 10px;
+    }
+    .fullSizeField {
+      width: 92%;
+      margin-bottom: 10px;
+    }
+    .halfSizeField {
+      width: 45%;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .streetNumberField {
+      width: 20%;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .streetField {
+      width: 70%;
+    }
+    .card-error {
+      color: red;
+    }
+    .inputHeader {
+      font-size: 20px;
+      font-family: "Noto Sans JP", sans-serif;
+      margin-bottom: 15px;
+    }
+    .productPurchaseForm {
+      .deliveryOptions {
+        padding: 5px 0;
+        border-top: 1px solid #dadada;
+        border-bottom: 1px solid #dadada;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .MuiFormGroup-root {
+    .MuiFormControlLabel-root {
+      margin-right: 100px;
+    }
+  }
+
+  // Right Side, Items being purchased and subtotals
+  .paymentItems {
+    border-left: 2px solid #dadada;
+    min-width: 40%;
+
+    .paymentItemTitle {
+      margin-left: 5px;
+      font-size: 22px;
+      font-weight: bolder;
+    }
+
+    .productCardsContainer {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding-right: 10px;
+      margin: 10px 15px;
+      height: 300px;
+      .productCards {
+        padding: 10px 0;
+        display: flex;
+        height: 100px;
+        border-bottom: 1px solid #dadada;
+        justify-content: space-between;
+        .imageThumbnail {
+          min-width: 30%;
+          img {
+            max-width: 100%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+          }
+        }
+        .namePrice {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-weight: bold;
+          font-size: 15px;
+          margin-bottom: 3px;
+          max-width: 60%;
+        }
+      }
+    }
+    .discountContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em;
+      .discountField {
+        width: 60%;
+      }
+      .applyButton {
+        height: 3em;
+        width: 10em;
+      }
+    }
+
+    .priceContainer {
+      padding: 12px;
+      border-top: 1px solid #dadada;
+      border-bottom: 1px solid #dadada;
+      .priceDetailContainer {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bolder;
+        font-size: 16px;
+      }
+      .subtotalTop {
+        margin-bottom: 15px;
+      }
+    }
+
+    .totalPriceContainer {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bolder;
+      font-size: 18px;
+    }
+  }
+  .bookingItems {
+    .inputHeader {
+      margin-top: 30px;
+      font-size: 20px;
+      font-family: "Noto Sans JP", sans-serif;
+      margin-bottom: 10px;
+    }
+    .bookingLocHeader {
+      margin: 0;
+      font-size: 16px;
+    }
+    .productCardsContainer {
+      height: 750px;
+      .pickupImageContainer {
+        min-width: 30%;
+        img {
+          max-width: 100%;
+          margin-left: 50%;
+          transform: translateX(-50%);
+          height: 100%;
+        }
+      }
+    }
+  }
+}

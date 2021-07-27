@@ -1,70 +1,245 @@
-# Getting Started with Create React App
+# Jeremy Tuesley & Sasha Zahnitko - Term 3 Assessment 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+As an aspiring developer, it is important to be able to communicate and demonstrate your abilities to prospective employers.
 
-## Available Scripts
+A full stack developer needs to be able to demonstrate they can build a complete application from design through to deployment for a commercial client (using appropriate tools and methodologies).
 
-In the project directory, you can run:
+You are to design a web application (app) built for a real world customer.
 
-### `yarn start`
+Find a business or organisation (preferably near Coder Academy) to build an app for.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Meet with the business owner or organisation manager to find out what challenges they face. Find a problem that you can solve with an app and present your ideas to the client.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The project must be completed in the assigned groups.
 
-### `yarn test`
+## Table of Contents:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Links](#Links)
+- [Description of your website](#Description-of-your-website)
+- [Dataflow Diagram](#Dataflow-Diagrams)
+- [Application Architecture Diagram](#Application-Architecture-Diagram)
+- [User Stories](#User-Stories)
+- [Wireframes](#Wireframes)
+- [Trello Screenshots](#Trello-Screenshots)
 
-### `yarn build`
+#
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Links
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [GitHub Repository-Client](https://github.com/jeremytuesley/XLExtends-Client)
+- [GitHub Repository-API](https://github.com/jeremytuesley/XLExtends-API)
+- [Trello Board](https://trello.com/b/dtnqkG0x/xlextends-project-management)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#
 
-### `yarn eject`
+## Description of your website
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Purpose
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To assist a growing small business owner, moving from etsy, into having their own website that functions as an online sales and booking platform.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Main Functionality/ Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Storefront
+- Product Catalog
+- Stripe payment system
+- Shopping cart
+- Product customer customization
+- Contact form
+- Terms & Conditions, Refund policy, Privacy policy
 
-## Learn More
+### Features to Improve Functionality
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Booking System, includes availability
+- Appliable discount codes
+- Admin panel
+- Promotional, social media integration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Target Audience
 
-### Code Splitting
+16 and above, people interested in lashes, artwork
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Tech Stack
 
-### Analyzing the Bundle Size
+### Front-end:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- HTML
+- SCSS
+- CSS
+- JS
+- React
 
-### Making a Progressive Web App
+### Back-end:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Node
+- Express
 
-### Advanced Configuration
+Testing:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Front End
 
-### Deployment
+- Cypress
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Back end
 
-### `yarn build` fails to minify
+- Mocha
+- Chai
+- Supertest
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Database:
+
+- MongoDB
+
+## Image Hosting:
+
+- Cloudinary
+
+## API Technology:
+
+- GraphQL
+
+## Deployment:
+
+- Heroku
+
+## Source Control:
+
+- GitHub
+
+#
+
+## Dataflow Diagrams
+
+### Admin Product Interaction
+
+![Admin Product Interaction](./docs/Admin_-__Product_Interaction.svg)
+
+### Admin Login
+
+![Admin Login](./docs/Admin_-_Login.svg)
+
+### Customer Booking
+
+![Customer Bookings](./docs/Customer_-_Bookings.svg)
+
+### Customer Contact
+
+![Customer Contact](./docs/Customer_-_Contact.svg)
+
+### Payment
+
+![Customer Payment](./docs/Customer_-_Payment.svg)
+
+### Customer Product Interaction
+
+![Customer Product Interaction](./docs/Customer_-_Product_Interaction.svg)
+
+#
+
+## Application Architecture Diagram
+
+![Application Architecture Diagram](./docs/Application_Architecture_Diagram.svg)
+
+#
+
+## User Stories
+
+As a business owner, I want to have access to an admin panel, so that I can CRUD products and bookings.
+
+As a business owner, I want to be able to highlight/ feature products as sale items, so that potential customers have an easy way of viewing them
+
+As a business owner, I want bookings to have a fee, so that customers are more inclined to show up to the appointment.
+
+As a business owner, I want my products to be purchasable through the website, so that payment is handled online.
+
+As a business owner, I want only some products to be able to be customized, so it’s clear when products are either set, or customizable.
+
+As a business owner, I want an available pickup location displayed, so that customers know where they are able to pick up a purchased product from.
+
+As a business owner, I want there to be discount codes, so that customers are more inclined to purchase the relevant product.
+
+As a customer, I want to be able to view legal policies (e.g refund policy, terms & conditions, etc), so that I know where I stand if something goes wrong with receiving a purchased product.
+
+As a user who wants to book a service, I want to be able to see available/ unavailable booking sessions, so that I can book an available appointment.
+
+As a user who wants to purchase a product, I want payment to be afterpay compatible, so that I have time to pay the product off.
+
+As a user who wants to purchase a product, I want to be able to customise a product I’m ordering, so that the product is personalised towards me.
+
+As a user who wants to purchase a product, I want to be able to view a list of products, so that I know what is available to purchase.
+
+As a user who wants to access the website, I want it to be mobile compatible, so that I can view it nicely on mobile.
+
+As a user who wishes to navigate the website, I want a user-friendly navigation bar, so that I can peruse the website easily.
+
+As a user who wants to enquire about a product, I want to be able to contact the owner, so that I can further discuss information about the product.
+
+#
+
+## Wireframes
+
+### Home Page
+
+![Home Page](./docs/HomePage.png)
+
+### Beauty Service
+
+![Beauty Service Page](./docs/BeautyServicePage.png)
+
+### Beauty Services
+
+![Beauty Services Page](./docs/BeautyServicesPage.png)
+
+### Bookings
+
+![Booking Page](./docs/BookingInformation.png)
+
+### Booking Confirmation
+
+![Booking Confirmation Page](./docs/BookingConfirmation.png)
+
+### Cart
+
+![Cart Page](./docs/Cart.png)
+
+### Catalog
+
+![Catalog Page](./docs/CatalogPage.png)
+
+### Contact
+
+![Contact Page](./docs/ContactPage.png)
+
+### Contact Confirmation
+
+![Contact Confirmation Page](./docs/ContactConfirmed.png)
+
+### Legal
+
+![Legal Page](./docs/LegalPages.png)
+
+### Product with Customization
+
+![Product with Customization Page](./docs/ProductCustomize.png)
+
+### Product with no Customization
+
+![Product with No Customization Page](./docs/ProductNoCustomize.png)
+
+### Purchasing
+
+![Purchasing Page](./docs/PurchasingPage.png)
+
+### Purchasing Confirmation
+
+![Purchasing Confirmation Page](./docs/PurchasingConfirmation.png)
+
+#
+
+## Trello Screenshots
+
+![Sprint One Start](./docs/Sprint_One_Start.jpg)
+![Sprint One During](./docs/Sprint_One_During.jpg)
+![Sprint One Complete](./docs/Sprint_One_Complete.jpg)
+![Sprint Two During](./docs/Sprint_Two_During.jpg)
+![Sprint Two Near Complete](./docs/Sprint_Two_NearComplete.jpg)

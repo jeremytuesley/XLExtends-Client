@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Noto+Sans+JP:wght@700&family=Open+Sans&display=swap");
+
+.legalPolicies {
+  width: 800px;
+  margin-top: 40px;
+  margin: 0 auto;
+  font-family: "Noto Sans JP", sans-serif;
+  .policyTitle {
+    font-size: 28px;
+    text-align: center;
+  }
+  .policyDate {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .policySubtitle {
+    margin-top: 15px;
+  }
+  .policyText {
+    line-height: 26px;
+    font-family: "Open Sans", sans-serif;
+    span {
+      font-weight: bolder;
+      text-decoration: underline;
+    }
+  }
+}

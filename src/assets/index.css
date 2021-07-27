@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Noto+Sans+JP:wght@700&family=Open+Sans&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #2f2f2f;
+  padding-top: 25px;
+}
