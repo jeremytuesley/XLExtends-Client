@@ -97,6 +97,7 @@ const CustomizationsView = ({ options }, ref) => {
                     Colour
                   </InputLabel>
                   <Select
+                  className="colour"
                     multiple
                     label="colour"
                     inputProps={{
@@ -122,6 +123,7 @@ const CustomizationsView = ({ options }, ref) => {
               )}
               {item === "theme" && (
                 <TextField
+                className="theme"
                   name="theme"
                   label="Theme*"
                   variant="outlined"
@@ -133,6 +135,7 @@ const CustomizationsView = ({ options }, ref) => {
               )}
               {item === "text" && (
                 <TextField
+                className="text"
                   multiline
                   rows={6}
                   maxRows={6}

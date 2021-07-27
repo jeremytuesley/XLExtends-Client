@@ -4,6 +4,8 @@ import { useQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import useBookingModel from "../hooks/useBooking";
+import { useHistory } from "react-router-dom";
+
 
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -40,6 +42,7 @@ const initialValidationSchema = {
 const BookingPaymentForm = ({ setShipping }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory();
 
   const [error, setError] = useState(null);
   const [succeeded, setSucceeded] = useState(false);
@@ -206,11 +209,7 @@ const BookingPaymentForm = ({ setShipping }) => {
               Pay now
             </Button>
           </div>
-          <div
-            className={succeeded ? "result-message" : "result-message hidden"}
-          >
-            Payment succeeded!
-          </div>
+          {succeeded && history.push("/success")}
         </div>
       </form>
     </div>
