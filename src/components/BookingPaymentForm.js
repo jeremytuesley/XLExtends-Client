@@ -4,6 +4,8 @@ import { useQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import useBookingModel from "../hooks/useBooking";
+import { useHistory } from "react-router-dom";
+
 
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -37,29 +39,36 @@ const initialValidationSchema = {
   bookingFee: yup.bool()
 };
 
-const BookingPaymentForm = ({ setBookingFee }) => {
+const BookingPaymentForm = ({ setShipping }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory();
 
   const [error, setError] = useState(null);
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [validateSchema, setValidateSchema] = useState(initialValidationSchema);
-  const { bookingData, setBookingData } = useBookingModel();
+  const { bookingData } = useBookingModel();
 
   const { data } = useQuery(PAYMENT_INTENT, {
     fetchPolicy: "no-cache",
     variables: {
       paymentIntentData: {
-        bookingFee: true,
-        serviceId: bookingData._id
+        shipping: true,
+        serviceId: [bookingData._id]
       }
     }
   });
 
+  const handleShippingChange = (event) => {
+    setShipping(event.target.value);
+    formik.setFieldValue("bookingFee", event.target.value);
+  };
+
   const handleSubmit = async (values) => {
     setProcessing(true);
+    console.log("submitted");
 
     const payload = await stripe.confirmCardPayment(
       data?.paymentIntent?.clientSecret,
@@ -98,11 +107,6 @@ const BookingPaymentForm = ({ setBookingFee }) => {
     validationSchema: yup.object(validateSchema),
     onSubmit: handleSubmit
   });
-
-  const handleBookingFeeChange = (event) => {
-    setBookingFee(event.target.value);
-    formik.setFieldValue("bookingFee", event.target.value);
-  };
 
   useEffect(() => {
     if (formik.values.bookingFee === "true") {
@@ -169,7 +173,7 @@ const BookingPaymentForm = ({ setBookingFee }) => {
               aria-label="payInFull"
               name="payInFull"
               value={formik.values.bookingFee}
-              onChange={handleBookingFeeChange}
+              onChange={handleShippingChange}
             >
               <FormControlLabel
                 value="true"
@@ -205,11 +209,7 @@ const BookingPaymentForm = ({ setBookingFee }) => {
               Pay now
             </Button>
           </div>
-          <div
-            className={succeeded ? "result-message" : "result-message hidden"}
-          >
-            Payment succeeded!
-          </div>
+          {succeeded && history.push("/success")}
         </div>
       </form>
     </div>

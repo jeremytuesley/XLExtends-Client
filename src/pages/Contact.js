@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CONTACT } from "../shared/utils";
-import { ADDRESS } from "../constants";
+import { ADDRESS, EMAIL_ADDRESS, FACEBOOK, INSTAGRAM } from "../constants";
 import location from "../assets/location.png";
 import Loading from "../components/Loading";
 
@@ -10,7 +10,7 @@ import * as yup from "yup";
 
 import "../assets/contact.scss";
 import { TextField, Button, Snackbar } from "@material-ui/core";
-// import { Alert } from "@material-ui/lab";
+import { Alert } from "@material-ui/lab";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -21,6 +21,7 @@ const Contact = () => {
   const [submitForm, { loading, error, data }] = useMutation(CONTACT);
 
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       await submitForm({ variables: values });
     } catch (err) {
@@ -72,9 +73,9 @@ const Contact = () => {
         autoHideDuration={4000}
         onClose={() => setErrorBar(false)}
       >
-        {/* <Alert severity="error" onClose={() => setErrorBar(false)}>
+        <Alert severity="error" onClose={() => setErrorBar(false)}>
           Something went wrong! Form did not send.
-        </Alert> */}
+        </Alert>
       </Snackbar>
       <div className="contactPage">
         <div className="sideDecoration"></div>
@@ -171,18 +172,18 @@ const Contact = () => {
           </p>
           <b>
             <a
-              href="mailto:xlextends@gmail.com"
+              href={`mailto:${EMAIL_ADDRESS}`}
               target="_blank"
               rel="noreferrer"
               className="email"
             >
-              Email: xlextends@gmail.com
+              Email: {EMAIL_ADDRESS}
             </a>
             <br />
           </b>
           <br />
           <a
-            href="https://www.facebook.com/XL-Extends-104815671697497"
+            href={FACEBOOK}
             target="_blank"
             rel="noreferrer"
             className="smLinks"
@@ -191,7 +192,7 @@ const Contact = () => {
             Facebook
           </a>
           <a
-            href="https://www.instagram.com/xlextends"
+            href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
             className="smLinks"

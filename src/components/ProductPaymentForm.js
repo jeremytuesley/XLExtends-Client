@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PAYMENT_INTENT } from "../shared/utils";
-import { useQuery } from "@apollo/client";
 import useCartModel from "../hooks/useCart";
+import { useApolloClient } from "@apollo/client";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import location from "../assets/location.png";
@@ -12,11 +12,13 @@ import {
   Button,
   Radio,
   RadioGroup,
-  FormControlLabel
+  FormControlLabel,
+  Snackbar
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import { ADDRESS, PHNUMBER } from "../constants";
 import "../assets/payment.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const initialValidationSchema = {
   firstName: yup
@@ -67,68 +69,67 @@ const shippingValidationSchema = {
 const ProductPaymentForm = ({ setShipping }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory();
 
-  const [error, setError] = useState(null);
+  const [cardError, setCardError] = useState(null);
+  const [errorBar, setErrorBar] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [validateSchema, setValidateSchema] = useState(initialValidationSchema);
+  const client = useApolloClient();
 
   const { cartData, setCart } = useCartModel();
 
-  const concatItemIds = () => {
-    let cartIds = [];
-    cartData.forEach((element) => {
-      if (!element.__typname === "Product") {
-        cartIds.push(element._id);
-      } else {
-        cartIds.push(element._id);
-      }
+  const assembleOrder = () => {
+    const prodData = [];
+    cartData.forEach((product) => {
+      const order = {};
+      order.id = product._id;
+      order.options = JSON.stringify(product.customChoices);
+      order.quantity = 1;
+      prodData.push(order);
     });
-    return cartIds;
+    return prodData;
   };
-
-  const { data } = useQuery(PAYMENT_INTENT, {
-    fetchPolicy: "no-cache",
-    variables: {
-      paymentIntentData: {
-        shipping: false,
-        productId: concatItemIds(),
-        discount: ""
-      }
-    }
-  });
 
   const handleSubmit = async (values) => {
-    console.log("submit");
-    console.log(values);
+    try {
+      if (cardError) return;
+      setProcessing(true);
 
-    setProcessing(true);
+      const { data, error } = await client.query({
+        query: PAYMENT_INTENT,
+        variables: {
+          paymentIntentData: {
+            shipping: values.shipping === "true",
+            productId: assembleOrder()
+          }
+        },
+        fetchPolicy: "no-cache"
+      });
 
-    const payload = await stripe.confirmCardPayment(
-      data?.paymentIntent?.clientSecret,
-      {
-        payment_method: {
-          card: elements.getElement(CardElement)
+      if (error) throw new Error();
+
+      const payload = await stripe.confirmCardPayment(
+        data.paymentIntent.clientSecret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement)
+          }
         }
-      }
-    );
-    console.log("payload", payload);
-    if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
-    } else {
-      setError(null);
+      );
+
+      if (payload.error) throw new Error();
+
+      setCardError(null);
       setProcessing(false);
       setSucceeded(true);
-      values.shipping = Boolean(values.shipping);
       setCart([]);
+    } catch (err) {
+      setErrorBar(true);
+      setProcessing(false);
     }
-  };
-
-  const handleCreditCardChange = async (event) => {
-    setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
   };
 
   const formik = useFormik({
@@ -148,6 +149,11 @@ const ProductPaymentForm = ({ setShipping }) => {
     onSubmit: handleSubmit
   });
 
+  const handleCreditCardChange = async (event) => {
+    setDisabled(event.empty);
+    setCardError(event.error ? event.error.message : "");
+  };
+
   const handleShippingChange = (event) => {
     setShipping(event.target.value);
     formik.setFieldValue("shipping", event.target.value);
@@ -166,6 +172,15 @@ const ProductPaymentForm = ({ setShipping }) => {
 
   return (
     <div className="paymentFormContainer">
+      <Snackbar
+        open={errorBar}
+        autoHideDuration={4000}
+        onClose={() => setErrorBar(false)}
+      >
+        <Alert severity="error" onClose={() => setErrorBar(false)}>
+          Something went wrong! Payment failed.
+        </Alert>
+      </Snackbar>
       <form onSubmit={formik.handleSubmit}>
         <div className="inputHeader">Contact Details</div>
         <div className="contactDetailContainer">
@@ -312,9 +327,9 @@ const ProductPaymentForm = ({ setShipping }) => {
         <div className="cardField">
           <CardElement onChange={handleCreditCardChange} />
         </div>
-        {error && (
+        {cardError && (
           <div className="card-error" role="alert">
-            {error}
+            {cardError}
           </div>
         )}
         <div className="paymentButtonContainer">
@@ -327,6 +342,7 @@ const ProductPaymentForm = ({ setShipping }) => {
           >
             Pay now
           </Button>
+          {succeeded && history.push("/success")}
           <div className="continueShoppingLink">
             Not finished yet?
             <br />{" "}
@@ -337,9 +353,6 @@ const ProductPaymentForm = ({ setShipping }) => {
               Continue Shopping
             </Link>
           </div>
-        </div>
-        <div className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded!
         </div>
       </form>
     </div>

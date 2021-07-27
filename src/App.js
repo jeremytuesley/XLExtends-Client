@@ -21,6 +21,7 @@ import ShipPolicy from "./pages/ShipPolicy";
 import ServiceTerms from "./pages/ServiceTerms";
 import Purchase from "./pages/Purchase";
 import Booking from "./pages/Booking";
+import PaymentConfirm from "./pages/PaymentConfirm";
 
 const stripePromise = loadStripe(PUBLISHABLE_KEY);
 
@@ -28,25 +29,29 @@ function App() {
   return (
     <main>
       <Navbar />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/products" component={Products} />
-        <Route path="/services" component={Services} />
-        <Route path="/sales" component={Sales} />
-        <Route path="/contact" component={Contact} />
-        <Route component={Admin} path="/admin" />
-        <Route path="/product/:id" component={Product} />
-        <Route path="/service/:id" component={Service} />
-        <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
-        <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
-        <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
-        <Route path="/legalpolicies/termsofservice" component={ServiceTerms} />
-        <Elements stripe={stripePromise}>
+      <Elements stripe={stripePromise}>
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/products" component={Products} />
+          <Route path="/services" component={Services} />
+          <Route path="/sales" component={Sales} />
+          <Route path="/contact" component={Contact} />
+          <Route component={Admin} path="/admin" />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/service/:id" component={Service} />
+          <Route path="/legalpolicies/privacypolicy" component={PrivPolicy} />
+          <Route path="/legalpolicies/refundpolicy" component={RefundPolicy} />
+          <Route path="/legalpolicies/shippingpolicy" component={ShipPolicy} />
+          <Route
+            path="/legalpolicies/termsofservice"
+            component={ServiceTerms}
+          />
           <Route path="/payment" component={Purchase} />
+          <Route path="/success" component={PaymentConfirm} />
           <Route path="/booking" component={Booking} />
-        </Elements>
-        <Route component={Error} />
-      </Switch>
+          <Route component={Error} />
+        </Switch>
+      </Elements>
       <Footer />
     </main>
   );

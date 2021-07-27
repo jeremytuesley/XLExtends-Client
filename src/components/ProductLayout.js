@@ -155,6 +155,7 @@ const ProductLayout = ({ dataResult, loading, error }) => {
                             {...props}
                             error={invalid}
                             helperText="Please select an available date"
+                            className="dateBooking"
                           />
                         )}
                         label="Booking Date"
