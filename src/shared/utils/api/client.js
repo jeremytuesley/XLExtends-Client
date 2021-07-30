@@ -3,7 +3,7 @@ import { createUploadLink } from "apollo-upload-client";
 
 import { getStoredAuthToken } from "../authToken";
 
-
+console.log(process.env.REACT_APP_API_URI);
 const httpLink = createUploadLink({
   uri: process.env.REACT_APP_API_URI
 });
