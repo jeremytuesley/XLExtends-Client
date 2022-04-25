@@ -7,7 +7,9 @@ import { SERVICE_START_TIME, SERVICE_END_TIME } from "../constants";
 import { useHistory } from "react-router-dom";
 import useBookingModel from "../hooks/useBooking";
 
-import { DatePicker, LocalizationProvider } from "@material-ui/pickers";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
 import {
   TextField,
   Select,
@@ -15,7 +17,7 @@ import {
   InputLabel,
   MenuItem
 } from "@material-ui/core";
-import DateFnsAdapter from "@material-ui/pickers/adapter/date-fns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "../assets/productlayout.scss";
@@ -146,7 +148,7 @@ const ProductLayout = ({ dataResult, loading, error }) => {
               {!isProduct && (
                 <>
                   <div className="datePickerContainer">
-                    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DatePicker
                         renderInput={(props) => (
                           <TextField
