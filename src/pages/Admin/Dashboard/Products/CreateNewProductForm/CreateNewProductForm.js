@@ -120,6 +120,7 @@ const CreateNewProductForm = () => {
         {...formik.getFieldProps("description")}
       />
       <h2>Options</h2>
+
       <div>
         {["color", "theme", "text"].map((option) => (
           <FormControlLabel
