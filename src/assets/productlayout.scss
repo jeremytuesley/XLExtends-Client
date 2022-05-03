@@ -120,3 +120,44 @@
     }
   }
 }
+
+// Mobile Media
+@media only screen and (max-width: 600px) {
+  .singleProduct {
+    display: block;
+    .imageContainer {
+      width: 300px;
+      .biggerImageContainer {
+        .biggerImage {
+          height: 240px;
+          width: 240px;
+        }
+      }
+    }
+    .productContainer {
+      width: 360px;
+      .productHeader {
+        display: block;
+      }
+      .productPrice {
+        margin-top: 16px;
+        position: absolute;
+        right: 0;
+      }
+      .serviceButtonsContainer {
+        min-width: none;
+        margin-top: 260px;
+      }
+      .paymentButtonsContainer {
+        min-width: 60%;
+        .buyButton {
+          padding: 10px;
+          height: 40px;
+        }
+        .cartButton {
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

@@ -70,3 +70,21 @@
     }
   }
 }
+
+// Mobile Media
+@media only screen and (max-width: 600px) {
+  .catalog {
+    .catalogContainer {
+      .catalogCards {
+        width: 50%;
+        .catalogCardsContainer {
+          width: 80%;
+
+          .imageContainer {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}

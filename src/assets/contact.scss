@@ -89,3 +89,17 @@
     }
   }
 }
+
+// Mobile Media
+@media only screen and (max-width: 600px) {
+  .contactPage {
+    width: 400px;
+    display: block;
+    .contactFormContainer {
+      margin: 0 20px 40px;
+    }
+    .socials {
+      margin: 0 20px;
+    }
+  }
+}
