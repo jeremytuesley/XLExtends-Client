@@ -35,4 +35,53 @@
       background-color: none;
     }
   }
+  .hamburger-menu__icon {
+    display: none;
+  }
+}
+.hamburger__menu-item {
+  background-color: #a05281;
+  color: antiquewhite;
+  transition: 200ms ease;
+  font-size: 20px;
+  padding: 18px;
+  letter-spacing: 1.5px;
+}
+.hamburger__social-links {
+  display: flex;
+  a {
+    color: antiquewhite;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    .MuiSvgIcon-root {
+      width: 32px;
+      height: 32px;
+      padding-left: 24px;
+    }
+  }
+}
+
+// Mobile Media
+@media only screen and (max-width: 600px) {
+  .topnav {
+    h1 {
+      font-size: 1.3em;
+    }
+    .topnav__desktop-nav {
+      display: none;
+    }
+    .topnav__logo-title {
+      display: block;
+    }
+    .hamburger-menu__icon {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
 }
