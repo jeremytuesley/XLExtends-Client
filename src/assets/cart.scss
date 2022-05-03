@@ -125,3 +125,10 @@
     background-color: #038a03;
   }
 }
+
+// Mobile Media
+@media only screen and (max-width: 600px) {
+  .cartContainer {
+    width: 380px;
+  }
+}
